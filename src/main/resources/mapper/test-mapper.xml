@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.home.jjh.hsk.mapper.TestMapper">
+	<select id="getApi2Data" resultType="com.home.jjh.hsk.model.DbTestModel">
+		/* testMapper.getApi2Data : tb_test 테이블에서 데이터 조회  */
+		SELECT *
+		  FROM `tb_test`
+		LIMIT 1; <!-- 단건조회테스트를위해 1개로 제한 -->
+	</select>
+
+	<select id="getApi3Data" resultType="com.home.jjh.hsk.model.DbTestCamelCaseModel">
+		/* testMapper.getApi3Data : camelCase 형태로 칼럼 매핑  */
+        SELECT DATA_NO
+              ,DATA_ID
+              ,CAMEL_TEST_DATA
+        FROM `tb_test_for_camel`
+	</select>
+</mapper>
