@@ -11,7 +11,7 @@
 	<groupId>com.home.jjh</groupId>
 	<artifactId>hsk</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
+	<name>hsk</name>
 	<description>HSK project for Spring Boot</description>
 	<packaging>war</packaging>
 
