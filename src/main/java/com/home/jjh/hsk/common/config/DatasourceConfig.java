@@ -26,7 +26,8 @@ import net.ttddyy.dsproxy.support.ProxyDataSourceBuilder;
 
 @Slf4j
 @Configuration
-@MapperScan(value="com.home.jjh.hsk.mapper", sqlSessionTemplateRef="sqlSessionTemplateBase")
+//@MapperScan(value="com.home.jjh.hsk.mapper", sqlSessionTemplateRef="sqlSessionTemplateBase")
+@MapperScan(value="com.home.jjh.hsk.mapper")//, sqlSessionTemplateRef="sqlSessionTemplateBase"
 public class DatasourceConfig {
 
 	@Autowired

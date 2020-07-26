@@ -4,17 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.home.jjh.hsk.mapper.TestMapper;
-import com.home.jjh.hsk.model.DbTestCamelCaseModel;
-import com.home.jjh.hsk.model.DbTestModel;
-import com.home.jjh.hsk.model.TestModel;
-import com.home.jjh.hsk.model.TestSubModel;
+import com.home.jjh.hsk.model.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 public class TestService {
-
 
 	@Autowired
 	private TestMapper testMapper;
@@ -56,8 +53,27 @@ public class TestService {
 		return testMapper.getApi2Data();
 	}
 
-
 	public List<DbTestCamelCaseModel> getApi3Data() {
 		return testMapper.getApi3Data();
 	}
+
+
+	//
+	public List<user> getApiUser(@RequestParam("email") String email){
+		return testMapper.getApiUser(email) ;
+	}
+
+	public void setApiUser(user user){
+		testMapper.setApiUser(user) ;
+	}
+
+	public void setApiMain_banner_item(main_banner_item main_banner_item){
+		testMapper.setApiMain_banner_item(main_banner_item) ;
+	}
+
+	public void inserShop (shopsModel shopsModel){
+		testMapper.insertShop(shopsModel);
+
+	}
+
 }

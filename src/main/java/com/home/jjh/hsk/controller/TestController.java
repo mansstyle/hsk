@@ -1,15 +1,11 @@
 package com.home.jjh.hsk.controller;
 
-import java.util.List;
-
-import com.home.jjh.hsk.model.DbTestCamelCaseModel;
-import com.home.jjh.hsk.model.DbTestModel;
-import com.home.jjh.hsk.model.TestModel;
+import com.home.jjh.hsk.model.*;
 import com.home.jjh.hsk.service.TestService;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class TestController {
@@ -44,7 +40,6 @@ public class TestController {
 		return testService.getApi2Data();
 	}
 
-
 	/**
 	 * DB 에서 데이터조회 / 리스트형 출력 / mybatis 칼럼매칭 camelcase 확인용
 	 * @return
@@ -52,5 +47,32 @@ public class TestController {
 	@RequestMapping(value = "/test3")
 	public List<DbTestCamelCaseModel> testApi3() {
 		return testService.getApi3Data();
+	}
+
+
+//	@GetMapping("/getApiUser")
+//	public List<user> getApiUser() {
+//		return testService.getApiUser();
+//	}
+
+	@GetMapping("/getApiUser")
+	public List<user> getApiUser(@RequestParam("email") String email) {
+		return testService.getApiUser(email);
+	}
+
+
+	@PostMapping("/setApiUser")
+	public void setApiUser(@RequestBody user user) {
+		testService.setApiUser(user);
+	}
+
+	@PostMapping("/setApiMain_banner_item")
+	public void setApiMain_banner_item(@RequestBody main_banner_item main_banner_item) {
+		testService.setApiMain_banner_item(main_banner_item);
+	}
+
+	@PostMapping("/insertShop")
+	public void inserShop(@RequestBody shopsModel shopsModel) {
+		testService.inserShop(shopsModel);
 	}
 }
