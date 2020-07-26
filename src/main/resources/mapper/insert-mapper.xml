@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.home.jjh.hsk.mapper.InsertMapper">
+
+
+
+	<!-- 사용자 등록 -->
+	<insert id="setApiUser" parameterType="com.home.jjh.hsk.model.user">
+		insert into user(
+		    uid , displayname , email , banner_id , phoneNumber , photoUrl , providerId , token_google
+		)
+		values( #{uid} , #{displayname} , #{email} , #{banner_id} , #{phoneNumber} , #{photoUrl} , #{providerId} , #{token_google})
+	</insert>
+
+
+	<!-- 베너 등록 -->
+	<insert id="setApiMain_banner_item" parameterType="com.home.jjh.hsk.model.main_banner_item">
+		insert into main_banner_item (
+			ad_id, banner_id, img_url, item_Click_url
+		)
+		values( #{ad_id} , #{banner_id} , #{img_url} , #{item_Click_url} )
+	</insert>
+
+
+	<!-- 스토어 등록 -->
+	<insert id="insertShop" parameterType="com.home.jjh.hsk.model.shopsModel">
+		insert into shops (
+			shop_id ,
+			add_info_as_phone ,
+			add_info_ceo ,
+			add_info_change_pay ,
+			add_info_email ,
+			add_info_internet_confirm_number ,
+			add_info_tran_auto_type ,
+			add_info_tran_customer_code ,
+			add_info_tran_name ,
+			add_info_trans_add_number ,
+			add_info_trans_recall_add ,
+			add_info_working_time ,
+			basic_age_type ,
+			basic_style ,
+			basic_title_word ,
+			shop_count_item_click ,
+			shop_count_like ,
+			shop_homepage ,
+			shop_main_img ,
+			shop_name
+		)
+
+		values(
+			#{shop_id},
+			#{add_info_as_phone},
+			#{add_info_ceo},
+			#{add_info_change_pay},
+			#{add_info_email},
+			#{add_info_internet_confirm_number},
+			#{add_info_tran_auto_type},
+			#{add_info_tran_customer_code},
+			#{add_info_tran_name},
+			#{add_info_trans_add_number},
+			#{add_info_trans_recall_add},
+			#{add_info_working_time},
+			#{basic_age_type},
+			#{basic_style},
+			#{basic_title_word},
+			#{shop_count_item_click},
+			#{shop_count_like},
+			#{shop_homepage},
+			#{shop_main_img},
+			#{shop_name}
+		)
+	</insert>
+
+
+	<!-- 스토어 등록 -->
+	<insert id="insertNewItem" parameterType="com.home.jjh.hsk.model.itemModel">
+		insert into item (
+			shop_id,
+			shop_item_detail_url,
+			shop_item_name,
+			shop_item_price_original,
+			shop_item_price_sale,
+			shop_item_url,
+			shop_title,
+			item_id
+		)
+		values(
+			#{shop_id} ,
+			#{shop_item_detail_url} ,
+			#{shop_item_name} ,
+			#{shop_item_price_original} ,
+			#{shop_item_price_sale} ,
+			#{shop_item_url} ,
+			#{shop_title} ,
+			#{item_id}
+		)
+	</insert>
+
+	<!-- 스토어 등록 -->
+	<insert id="insertItemDetail" parameterType="com.home.jjh.hsk.model.itemDetailModel">
+		insert into shop_item_detail_array (
+			item_id ,
+			detail_item_categori ,
+			detail_item_color ,
+			detail_item_img ,
+			detail_item_img_thum ,
+			detail_item_shop_fee ,
+			detail_item_size ,
+			detail_item_title ,
+			detail_pages_item ,
+			shop_item_detail_url ,
+			shop_item_name ,
+			shop_item_price_original ,
+			shop_item_price_sale ,
+			shop_item_url
+		)
+		values(
+			#{item_id} ,
+			#{detail_item_categori} ,
+			#{detail_item_color} ,
+			#{detail_item_img} ,
+			#{detail_item_img_thum} ,
+			#{detail_item_shop_fee} ,
+			#{detail_item_size} ,
+			#{detail_item_title} ,
+			#{detail_pages_item} ,
+			#{shop_item_detail_url} ,
+			#{shop_item_name} ,
+			#{shop_item_price_original} ,
+			#{shop_item_price_sale} ,
+			#{shop_item_url}
+		)
+	</insert>
+
+	<!-- 스토어 등록 -->
+	<insert id="insertEvent" parameterType="com.home.jjh.hsk.model.eventModel">
+		insert into event (
+			event_id ,
+			click_count ,
+			end_date ,
+			event_content ,
+			img_url_content ,
+			img_url_main ,
+			start_date
+		)
+		values(
+			#{event_id},
+			#{click_count},
+			#{end_date},
+			#{event_content},
+			#{img_url_content},
+			#{img_url_main},
+			#{start_date}
+		)
+	</insert>
+
+</mapper>

@@ -3,7 +3,9 @@ package com.home.jjh.hsk.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.home.jjh.hsk.mapper.SelectMapper;
 import com.home.jjh.hsk.mapper.TestMapper;
+import com.home.jjh.hsk.mapper.InsertMapper;
 import com.home.jjh.hsk.model.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,11 @@ public class TestService {
 
 	@Autowired
 	private TestMapper testMapper;
+	@Autowired
+	private InsertMapper insertMapper;
+	@Autowired
+	private SelectMapper selectMapper;
+
 
 	/**
 	 * 테스트 api 생성
@@ -48,32 +55,17 @@ public class TestService {
 		return rtnData;
 	}
 
-	
-	public DbTestModel getApi2Data() {
-		return testMapper.getApi2Data();
-	}
+	public DbTestModel getApi2Data() {return testMapper.getApi2Data();}
+	public List<DbTestCamelCaseModel> getApi3Data() {return testMapper.getApi3Data();}
 
-	public List<DbTestCamelCaseModel> getApi3Data() {
-		return testMapper.getApi3Data();
-	}
+	public List<user> getApiUser(@RequestParam("email") String email){return selectMapper.getApiUser(email);}
 
 
-	//
-	public List<user> getApiUser(@RequestParam("email") String email){
-		return testMapper.getApiUser(email) ;
-	}
-
-	public void setApiUser(user user){
-		testMapper.setApiUser(user) ;
-	}
-
-	public void setApiMain_banner_item(main_banner_item main_banner_item){
-		testMapper.setApiMain_banner_item(main_banner_item) ;
-	}
-
-	public void inserShop (shopsModel shopsModel){
-		testMapper.insertShop(shopsModel);
-
-	}
+	public void setApiUser(user user){insertMapper.setApiUser(user);}
+	public void setApiMain_banner_item(main_banner_item main_banner_item){insertMapper.setApiMain_banner_item(main_banner_item) ;}
+	public void inserShop (shopsModel shopsModel){insertMapper.insertShop(shopsModel);}
+	public void insertNewItem (itemModel itemModel){insertMapper.insertNewItem(itemModel);}
+	public void insertItemDetail (itemDetailModel itemDetailModel){insertMapper.insertItemDetail(itemDetailModel);}
+	public void insertEvent (eventModel eventModel){insertMapper.insertEvent(eventModel);}
 
 }

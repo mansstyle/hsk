@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.home.jjh.hsk.mapper.SelectMapper">
+    <!-- 유저데이타 개인 유저 데이타 -->
+    <select id="getApiUser" resultType="com.home.jjh.hsk.model.user">
+		/* testMapper.getApi3Data : camelCase 형태로 칼럼 매핑  */
+        SELECT uid ,
+                displayname,
+				email,
+				banner_id,
+				phoneNumber,
+				photoUrl,
+				providerId,
+				token_google
+        FROM `user`
+        WHERE email = #{email}
+	</select>
+
+</mapper>

@@ -21,7 +21,6 @@ public class TestController {
 	public String test() {
 		return "This is main page.";
 	}
-
 	/**
 	 * API 데이터출력 테스트
 	 * @return
@@ -30,7 +29,6 @@ public class TestController {
 	public TestModel testApi() {
 		return testService.getApi1Data();
 	}
-
 	/**
 	 * DB에서 단순데이터 조회하여 출력
 	 * @return
@@ -39,7 +37,6 @@ public class TestController {
 	public DbTestModel testApi2() {
 		return testService.getApi2Data();
 	}
-
 	/**
 	 * DB 에서 데이터조회 / 리스트형 출력 / mybatis 칼럼매칭 camelcase 확인용
 	 * @return
@@ -48,12 +45,6 @@ public class TestController {
 	public List<DbTestCamelCaseModel> testApi3() {
 		return testService.getApi3Data();
 	}
-
-
-//	@GetMapping("/getApiUser")
-//	public List<user> getApiUser() {
-//		return testService.getApiUser();
-//	}
 
 	@GetMapping("/getApiUser")
 	public List<user> getApiUser(@RequestParam("email") String email) {
@@ -75,4 +66,20 @@ public class TestController {
 	public void inserShop(@RequestBody shopsModel shopsModel) {
 		testService.inserShop(shopsModel);
 	}
+
+	@PostMapping("/insertNewItem")
+	public void insertNewItem(@RequestBody itemModel itemModel){
+		testService.insertNewItem(itemModel) ;
+	}
+
+	@PostMapping("/insertItemDetail")
+	public void insertNewDetailItem(@RequestBody itemDetailModel itemDetailModel){
+		testService.insertItemDetail(itemDetailModel) ;
+	}
+
+	@PostMapping("/insertEvent")
+	public void insertEventItem(@RequestBody eventModel eventModel){
+		testService.insertEvent(eventModel) ;
+	}
+
 }

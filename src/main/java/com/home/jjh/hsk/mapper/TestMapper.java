@@ -11,17 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Mapper
 public interface TestMapper {
-
     DbTestModel getApi2Data();
-
     List<DbTestCamelCaseModel> getApi3Data();
 
-    List<user> getApiUser(@RequestParam("email") String email);
-
-    //insert user data post --
-    void setApiUser(user user);
-    void setApiMain_banner_item(main_banner_item main_banner_item);
-
-    //
-    void insertShop(shopsModel shopsModel) ;
 }
