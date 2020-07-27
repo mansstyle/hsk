@@ -8,13 +8,13 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @SpringBootApplication
 public class HSKApplication extends SpringBootServletInitializer {
 
-	public static void main(String[] args) {
-		SpringApplication.run(HSKApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(HSKApplication.class, args);
+    }
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder applicationBuilder) {
-		return applicationBuilder.sources(HSKApplication.class);
-	}
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder applicationBuilder) {
+        return applicationBuilder.sources(HSKApplication.class);
+    }
 
 }

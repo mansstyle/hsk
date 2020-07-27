@@ -2,8 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.home.jjh.hsk.mapper.SelectMapper">
     <!-- 유저데이타 개인 유저 데이타 -->
-    <select id="getApiUser" resultType="com.home.jjh.hsk.model.user">
-		/* testMapper.getApi3Data : camelCase 형태로 칼럼 매핑  */
+    <select id="getApiUser" resultType="com.home.jjh.hsk.model.userModel">
         SELECT uid ,
                 displayname,
 				email,
@@ -14,6 +13,92 @@
 				token_google
         FROM `user`
         WHERE email = #{email}
+	</select>
+
+    <select id="getApiIntro" resultType="com.home.jjh.hsk.model.introModel">
+		SELECT ad_id,
+			data_ad,
+			emg_content,
+			emg_title,
+			last_aos,
+			last_ios,
+			up_msg_aos,
+			up_msg_ios,
+			up_title_aos,
+			up_title_ios,
+			ver_aos,
+			ver_ios
+		FROM `ad_intro`
+	</select>
+
+    <select id="getApiAd" resultType="com.home.jjh.hsk.model.adModel">
+		SELECT ad_id,
+			cnt,
+			start_date,
+			end_date,
+			cnt_max
+		FROM `ad`
+	</select>
+
+	<select id="getApiAdDataItem" resultType="com.home.jjh.hsk.model.adDataModel">
+		SELECT ad_id,
+			ad_detail_url,
+			ad_msg,
+			ad_no,
+			ad_store_name,
+			ad_url
+		FROM `ad_data`
+	</select>
+
+
+    <select id="getApiEvent" resultType="com.home.jjh.hsk.model.eventModel">
+		SELECT
+			event_id,
+			click_count,
+			end_date,
+			event_content,
+			img_url_content,
+			img_url_main,
+			start_date
+		FROM `event`
+	</select>
+
+	<select id="getApiItem" resultType="com.home.jjh.hsk.model.itemModel">
+		SELECT
+			shop_id,
+			shop_item_detail_url,
+			shop_item_name,
+			shop_item_price_original,
+			shop_item_price_sale,
+			shop_item_url,
+			shop_title,
+			item_id
+		FROM `item`
+	</select>
+
+	<select id="getApiShopsDataItem" resultType="com.home.jjh.hsk.model.itemModel">
+		SELECT
+			shop_id,
+			add_info_as_phone,
+			add_info_ceo,
+			add_info_change_pay,
+			add_info_email,
+			add_info_internet_confirm_number,
+			add_info_tran_auto_type,
+			add_info_tran_customer_code,
+			add_info_tran_name,
+			add_info_trans_add_number,
+			add_info_trans_recall_add,
+			add_info_working_time,
+			basic_age_type,
+			basic_style,
+			basic_title_word,
+			shop_count_item_click,
+			shop_count_like,
+			shop_homepage,
+			shop_main_img,
+			shop_name
+		FROM `shops`
 	</select>
 
 </mapper>

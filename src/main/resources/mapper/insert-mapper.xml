@@ -5,8 +5,8 @@
 
 
 	<!-- 사용자 등록 -->
-	<insert id="setApiUser" parameterType="com.home.jjh.hsk.model.user">
-		insert into user(
+	<insert id="setApiUser" parameterType="com.home.jjh.hsk.model.userModel">
+		insert into userModel(
 		    uid , displayname , email , banner_id , phoneNumber , photoUrl , providerId , token_google
 		)
 		values( #{uid} , #{displayname} , #{email} , #{banner_id} , #{phoneNumber} , #{photoUrl} , #{providerId} , #{token_google})
@@ -20,7 +20,6 @@
 		)
 		values( #{ad_id} , #{banner_id} , #{img_url} , #{item_Click_url} )
 	</insert>
-
 
 	<!-- 스토어 등록 -->
 	<insert id="insertShop" parameterType="com.home.jjh.hsk.model.shopsModel">

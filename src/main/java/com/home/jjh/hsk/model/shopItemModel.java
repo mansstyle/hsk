@@ -5,13 +5,16 @@ import lombok.Setter;
 import lombok.ToString;
 
 
-/**intro banner item*/
+/**ad*/
 @Getter
 @Setter
 @ToString
-public class main_banner_item{
+public class shopItemModel {
+
     private String ad_id;
-    private String banner_id;
-    private String img_url;
-    private String item_Click_url;
+    private String cnt;
+
+    private String start_date;
+    private String end_date;
+    private String cnt_max;
 }

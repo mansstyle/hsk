@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter @Setter @ToString
-public class DbTestCamelCaseModel {
+public class DbTestCamelCaseModel{
 	private Integer dataNo;
 	private String dataId;
 	private String camelTestData;

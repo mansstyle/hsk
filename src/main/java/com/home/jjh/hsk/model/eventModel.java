@@ -10,7 +10,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class eventModel {
+public class eventModel{
     //goods_id
     private String event_id ;
     private String click_count;

@@ -10,7 +10,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class itemDetailModel {
+public class itemDetailModel{
     private String item_id ;
     private String detail_item_categori ;
     private String detail_item_color ;

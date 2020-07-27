@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter @Setter @ToString
-public class TestSubModel {
+public class TestSubModel{
 	private String subAttr1;
 	private String subAttr2;
 

@@ -7,7 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter @Setter @ToString
-public class TestModel {
+public class TestModel{
 
 	private String attr1;
 	private String attr2;

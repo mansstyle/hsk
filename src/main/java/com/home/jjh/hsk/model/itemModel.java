@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class itemModel {
+public class itemModel{
     //goods_id
     private String shop_id;
     private String shop_item_detail_url;
