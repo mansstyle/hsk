@@ -15,7 +15,7 @@
 
 	<!-- 베너 등록 -->
 	<insert id="setApiMainBannerItem" parameterType="com.home.jjh.hsk.model.mainBannerItem">
-		insert into main_bannerItem (
+		insert into mainbanneritem (
 			adId, bannerId, imgUrl, itemClickUrl
 		)
 		values( #{adId} , #{bannerId} , #{imgUrl} , #{itemClickUrl} )

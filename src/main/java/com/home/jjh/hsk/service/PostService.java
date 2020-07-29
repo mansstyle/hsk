@@ -5,6 +5,8 @@ import com.home.jjh.hsk.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
 public class PostService {
 
@@ -12,7 +14,7 @@ public class PostService {
 	private InsertMapper insertMapper;
 
 	public void setApiUser(userModel userModel){insertMapper.setApiUser(userModel);}
-	public void setApiMainBannerItem(mainBannerItem mainBannerItem){insertMapper.setApiMainBannerItem(mainBannerItem) ;}
+	public void setApiMainBannerItem(mainBannerItem mainBannerItem){insertMapper.setApiMainBannerItem(mainBannerItem);}
 	public void inserShop (shopsModel shopsModel){insertMapper.insertShop(shopsModel);}
 	public void insertNewItem (itemModel itemModel){insertMapper.insertNewItem(itemModel);}
 	public void insertItemDetail (itemDetailModel itemDetailModel){insertMapper.insertItemDetail(itemDetailModel);}
