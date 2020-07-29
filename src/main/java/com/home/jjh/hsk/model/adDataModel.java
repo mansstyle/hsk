@@ -11,10 +11,10 @@ import lombok.ToString;
 @ToString
 public class adDataModel {
 
-    private String ad_id;
-    private String ad_detail_url;
-    private String ad_msg;
-    private String ad_no;
-    private String ad_store_name;
-    private String ad_url;
+    private String adId;
+    private String adDetailUrl;
+    private String adMsg;
+    private String adNo;
+    private String adStoreName;
+    private String adUrl;
 }

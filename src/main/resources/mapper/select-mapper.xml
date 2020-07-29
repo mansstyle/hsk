@@ -6,98 +6,98 @@
         SELECT uid ,
                 displayname,
 				email,
-				banner_id,
+				bannerId,
 				phoneNumber,
 				photoUrl,
 				providerId,
-				token_google
+				tokenGoogle
         FROM `user`
         WHERE email = #{email}
 	</select>
 
     <select id="getApiIntro" resultType="com.home.jjh.hsk.model.introModel">
-		SELECT ad_id,
-			data_ad,
-			emg_content,
-			emg_title,
-			last_aos,
-			last_ios,
-			up_msg_aos,
-			up_msg_ios,
-			up_title_aos,
-			up_title_ios,
-			ver_aos,
-			ver_ios
-		FROM `ad_intro`
+		SELECT adId,
+			dataAd,
+			emgContent,
+			emgTitle,
+			lastAos,
+			lastIos,
+			upMsgAos,
+			upMsgIos,
+			upTitleAos,
+			upTitleIos,
+			verAos,
+			verIos
+		FROM `adintro`
 	</select>
 
     <select id="getApiAd" resultType="com.home.jjh.hsk.model.adModel">
-		SELECT ad_id,
+		SELECT adId,
 			cnt,
-			start_date,
-			end_date,
-			cnt_max
+			startDate,
+			endDate,
+			cntMax
 		FROM `ad`
 	</select>
 
 	<select id="getApiAdDataItem" resultType="com.home.jjh.hsk.model.adDataModel">
-		SELECT ad_id,
-			ad_detail_url,
-			ad_msg,
-			ad_no,
-			ad_store_name,
-			ad_url
-		FROM `ad_data`
+		SELECT adId,
+			adDetailUrl,
+			adMsg,
+			adNo,
+			adStoreName,
+			adUrl
+		FROM `adData`
 	</select>
 
 
     <select id="getApiEvent" resultType="com.home.jjh.hsk.model.eventModel">
 		SELECT
-			event_id,
-			click_count,
-			end_date,
-			event_content,
-			img_url_content,
-			img_url_main,
-			start_date
+			eventId,
+			clickCount,
+			endDate,
+			eventContent,
+			imgUrlContent,
+			imgUrlMain,
+			startDate
 		FROM `event`
 	</select>
 
 	<select id="getApiItem" resultType="com.home.jjh.hsk.model.itemModel">
 		SELECT
-			shop_id,
-			shop_item_detail_url,
-			shop_item_name,
-			shop_item_price_original,
-			shop_item_price_sale,
-			shop_item_url,
-			shop_title,
-			item_id
+			shopId,
+			shopItemDetailUrl,
+			shopItemName,
+			shopItemPrice_original,
+			shopItemPriceSale,
+			shopItemUrl,
+			shopTitle,
+			itemId
 		FROM `item`
 	</select>
 
 	<select id="getApiShopsDataItem" resultType="com.home.jjh.hsk.model.itemModel">
 		SELECT
-			shop_id,
-			add_info_as_phone,
-			add_info_ceo,
-			add_info_change_pay,
-			add_info_email,
-			add_info_internet_confirm_number,
-			add_info_tran_auto_type,
-			add_info_tran_customer_code,
-			add_info_tran_name,
-			add_info_trans_add_number,
-			add_info_trans_recall_add,
-			add_info_working_time,
-			basic_age_type,
-			basic_style,
-			basic_title_word,
-			shop_count_item_click,
-			shop_count_like,
-			shop_homepage,
-			shop_main_img,
-			shop_name
+			shopId,
+			addInfoAsPhone,
+			addInfoCeo,
+			addInfoChangePay,
+			addInfoEmail,
+			addInfoInternetConfirmNumber,
+			addInfoTranAutoType,
+			addInfoTranCustomerCode,
+			addInfoTranName,
+			addInfoTransAddNumber,
+			addInfoTrans_recallAdd,
+			addInfoWorkingTime,
+			basicAgeType,
+			basicStyle,
+			basicTitleWord,
+			shopCountItemClick,
+			shopCount_like,
+			shopHomepage,
+			shopMainImg,
+			shopName
 		FROM `shops`
 	</select>
 

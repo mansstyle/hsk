@@ -12,12 +12,12 @@ import lombok.ToString;
 @ToString
 public class eventModel{
     //goods_id
-    private String event_id ;
-    private String click_count;
-    private String end_date;
-    private String event_content;
-    private String img_url_content;
-    private String img_url_main;
-    private String start_date;
+    private String eventId ;
+    private String clickCount;
+    private String endDate;
+    private String eventContent;
+    private String imgUrlContent;
+    private String imgUrlMain;
+    private String startDate;
 
 }

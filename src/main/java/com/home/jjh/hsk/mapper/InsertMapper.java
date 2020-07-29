@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface InsertMapper {
     //insert user data post --
     void setApiUser(userModel userModel);
-    void setApiMain_banner_item(main_banner_item main_banner_item);
+    void setApiMainBannerItem(mainBannerItem mainBannerItem);
     /* 스토어등록 */
     void insertShop(shopsModel shopsModel) ;
     /* 아이템 등록 */

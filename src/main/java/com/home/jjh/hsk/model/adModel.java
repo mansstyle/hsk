@@ -4,8 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.io.Serializable;
-
 
 /**ad*/
 @Getter
@@ -13,10 +11,10 @@ import java.io.Serializable;
 @ToString
 public class adModel {
 
-    private String ad_id;
+    private String adId;
     private String cnt;
 
-    private String start_date;
-    private String end_date;
-    private String cnt_max;
+    private String startDate;
+    private String endDate;
+    private String cntMax;
 }

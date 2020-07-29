@@ -12,7 +12,7 @@ public class PostService {
 	private InsertMapper insertMapper;
 
 	public void setApiUser(userModel userModel){insertMapper.setApiUser(userModel);}
-	public void setApiMain_banner_item(main_banner_item main_banner_item){insertMapper.setApiMain_banner_item(main_banner_item) ;}
+	public void setApiMainBannerItem(mainBannerItem mainBannerItem){insertMapper.setApiMainBannerItem(mainBannerItem) ;}
 	public void inserShop (shopsModel shopsModel){insertMapper.insertShop(shopsModel);}
 	public void insertNewItem (itemModel itemModel){insertMapper.insertNewItem(itemModel);}
 	public void insertItemDetail (itemDetailModel itemDetailModel){insertMapper.insertItemDetail(itemDetailModel);}

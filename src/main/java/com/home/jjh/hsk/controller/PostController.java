@@ -3,7 +3,9 @@ package com.home.jjh.hsk.controller;
 import com.home.jjh.hsk.model.*;
 import com.home.jjh.hsk.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class PostController {
@@ -16,9 +18,9 @@ public class PostController {
 		postService.setApiUser(userModel);
 	}
 
-	@PostMapping("/setApiMain_banner_item")
-	public void setApiMain_banner_item(@RequestBody main_banner_item main_banner_item) {
-		postService.setApiMain_banner_item(main_banner_item);
+	@PostMapping("/setApiMainBanneItem")
+	public void setApiMainBannerItem(@RequestBody mainBannerItem mainBannerItem) {
+		postService.setApiMainBannerItem(mainBannerItem);
 	}
 
 	@PostMapping("/insertShop")

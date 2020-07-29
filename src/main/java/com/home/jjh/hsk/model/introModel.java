@@ -8,16 +8,16 @@ import lombok.ToString;
 /**intro*/
 @Getter @Setter @ToString
 public class introModel{
-    private String ad_id       ;
-    private String data_ad     ;
-    private String emg_content ;
-    private String emg_title   ;
-    private String last_aos    ;
-    private String last_ios    ;
-    private String up_msg_aos  ;
-    private String up_msg_ios  ;
-    private String up_title_aos;
-    private String up_title_ios;
-    private String ver_aos     ;
-    private String ver_ios     ;
+    private String adId       ;
+    private String dataAd     ;
+    private String emgContent ;
+    private String emgTitle   ;
+    private String lastAos    ;
+    private String lastIos    ;
+    private String upMsgAos  ;
+    private String upMsgIos  ;
+    private String upTitleAos;
+    private String upTitleIos;
+    private String verAos     ;
+    private String verIos     ;
 }

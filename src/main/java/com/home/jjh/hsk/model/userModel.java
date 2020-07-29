@@ -12,10 +12,10 @@ public class userModel{
     private String uid;
     private String displayname;
     private String email;
-    private String banner_id;
+    private String bannerId;
     private String phoneNumber;
     private String photoUrl;
     private String providerId;
-    private String token_google;
+    private String tokenGoogle;
 
 }
