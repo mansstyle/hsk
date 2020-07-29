@@ -10,8 +10,8 @@ import lombok.ToString;
 @Setter
 @ToString
 public class mainBannerItem {
-    private String ad_id;
-    private String banner_id;
-    private String img_url;
-    private String item_Click_url;
+    private String adId;
+    private String bannerId;
+    private String imgUrl;
+    private String itemClickUrl;
 }

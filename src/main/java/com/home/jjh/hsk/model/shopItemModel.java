@@ -11,10 +11,10 @@ import lombok.ToString;
 @ToString
 public class shopItemModel {
 
-    private String ad_id;
+    private String adId;
     private String cnt;
 
-    private String start_date;
-    private String end_date;
-    private String cnt_max;
+    private String startDate;
+    private String endDate;
+    private String cntMax;
 }

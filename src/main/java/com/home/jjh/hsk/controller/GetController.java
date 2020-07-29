@@ -71,7 +71,7 @@ public class GetController {
 		return obj.toString();
 	}
 
-	@GetMapping("/getapiitem")
+	@GetMapping("/getapiitem") //추후 스토어 이름 .. 등등으로 검색 가능하도록 추가.
 	public String getApiItem(){
 		List<itemModel> data = getService.getApiItem();
 		JsonObject obj = new JsonObject();

@@ -68,7 +68,7 @@
 			shopId,
 			shopItemDetailUrl,
 			shopItemName,
-			shopItemPrice_original,
+			shopItemPriceOriginal,
 			shopItemPriceSale,
 			shopItemUrl,
 			shopTitle,
@@ -76,27 +76,26 @@
 		FROM `item`
 	</select>
 
-	<select id="getApiShopsDataItem" resultType="com.home.jjh.hsk.model.itemModel">
-		SELECT
-			shopId,
-			addInfoAsPhone,
-			addInfoCeo,
-			addInfoChangePay,
-			addInfoEmail,
-			addInfoInternetConfirmNumber,
-			addInfoTranAutoType,
-			addInfoTranCustomerCode,
-			addInfoTranName,
-			addInfoTransAddNumber,
-			addInfoTrans_recallAdd,
-			addInfoWorkingTime,
-			basicAgeType,
-			basicStyle,
-			basicTitleWord,
-			shopCountItemClick,
-			shopCount_like,
-			shopHomepage,
-			shopMainImg,
+	<select id="getApiShopsDataItem" resultType="com.home.jjh.hsk.model.shopsModel">
+		SELECT shopId ,
+			addInfoAsPhone ,
+			addInfoCeo ,
+			addInfoChangePay ,
+			addInfoEmail ,
+			addInfoInternetConfirmNumber ,
+			addInfoTranAutoType ,
+			addInfoTranCustomerCode ,
+			addInfoTranName ,
+			addInfoTransAddNumber ,
+			addInfoTransRecallAdd ,
+			addInfoWorkingTime ,
+			basicAgeType ,
+			basicStyle ,
+			basicTitleWord ,
+			shopCountItemClick ,
+			shopCountLike ,
+			shopHomepage ,
+			shopMainImg ,
 			shopName
 		FROM `shops`
 	</select>

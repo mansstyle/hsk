@@ -11,18 +11,18 @@ import lombok.ToString;
 @Setter
 @ToString
 public class itemDetailModel{
-    private String item_id ;
-    private String detail_item_categori ;
-    private String detail_item_color ;
-    private String detail_item_img ;
-    private String detail_item_img_thum ;
-    private String detail_item_shop_fee ;
-    private String detail_item_size ;
-    private String detail_item_title ;
-    private String detail_pages_item ;
-    private String shop_item_detail_url ;
-    private String shop_item_name ;
-    private String shop_item_price_original ;
-    private String shop_item_price_sale ;
-    private String shop_item_url ;
+    private String itemId ;
+    private String detailItemCategori ;
+    private String detailItemColor ;
+    private String detailItemImg ;
+    private String detailItemImgThum ;
+    private String detailItemShopFee ;
+    private String detailItemSize ;
+    private String detailItemTitle ;
+    private String detailPagesItem ;
+    private String shopItemDetailUrl ;
+    private String shopItemName ;
+    private String shopItemPriceOriginal ;
+    private String shopItemPriceSale ;
+    private String shopItemUrl ;
 }
