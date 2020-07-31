@@ -6,7 +6,7 @@
 
 	<!-- 사용자 등록 -->
 	<insert id="setApiUser" parameterType="com.home.jjh.hsk.model.userModel">
-		insert into userModel(
+		insert into user(
 		    uid , displayname , email , bannerId , phoneNumber , photoUrl , providerId , tokenGoogle
 		)
 		values( #{uid} , #{displayname} , #{email} , #{bannerId} , #{phoneNumber} , #{photoUrl} , #{providerId} , #{tokenGoogle})
