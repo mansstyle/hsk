@@ -3,12 +3,14 @@ package com.home.jjh.hsk.mapper;
 import com.home.jjh.hsk.model.*;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
 import java.util.Map;
 
 @Mapper
 public interface InsertMapper {
     //insert user data post --
-    void setApiUser(userModel userModel);
+    List<userModel> setApiUser(userModel userModel);
+
     void setApiMainBannerItem(mainBannerItem mainBannerItem);
     /* 스토어등록 */
     void insertShop(shopsModel shopsModel) ;

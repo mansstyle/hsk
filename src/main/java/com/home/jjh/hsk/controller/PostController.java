@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -16,8 +17,9 @@ public class PostController {
 	private PostService postService;
 
 	@PostMapping("/setApiUser")
-	public void setApiUser(@RequestBody userModel userModel) {
-		postService.setApiUser(userModel);
+	public List<userModel> setApiUser(@RequestBody userModel userModel) {
+		//
+		return postService.setApiUser(userModel);
 	}
 
 	@PostMapping("/setApiMainBanneItem")
