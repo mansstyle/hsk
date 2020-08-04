@@ -100,4 +100,27 @@
 		FROM `shops`
 	</select>
 
+
+	<select id="getApiTestJoin" resultType="com.home.jjh.hsk.model.testJoinModel">
+		SELECT adId,
+    		dataAd,
+    		emgContent,
+    		emgTitle,
+    		lastAos,
+    		lastIos,
+    		upMsgAos,
+    		upMsgIos,
+    		upTitleAos,
+    		upTitleIos,
+    		verAos,
+    		verIos,
+			adDetailUrl ,
+			adMsg ,
+			adNo ,
+			adStoreName ,
+			adUrl
+		from adintro
+		right join dataad a
+		on adintro.dataAd = a.adId;
+	</select>
 </mapper>

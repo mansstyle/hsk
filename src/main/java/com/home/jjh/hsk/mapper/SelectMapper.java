@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface SelectMapper {
     //select user data post --
-    List<userModel> getApiUser(@RequestParam("email") String email);
+    userModel getApiUser(@RequestParam("email") String email);
     //
     List<adModel> getApiAd();
     //
@@ -22,6 +22,10 @@ public interface SelectMapper {
     List<adDataModel> getApiAdDataItem();
     //
     List<shopsModel> getApiShopsDataItem();
+
+    //
+    testJoinModel getApiTestJoin();
+
 
 
 

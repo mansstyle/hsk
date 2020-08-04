@@ -15,7 +15,7 @@ public class GetService {
 	private SelectMapper selectMapper;
 
 	/*user data*/
-	public List<userModel> getApiUser(@RequestParam("email") String email){
+	public userModel getApiUser(@RequestParam("email") String email){
 		return selectMapper.getApiUser(email);
 
 	}
@@ -46,6 +46,10 @@ public class GetService {
 	public List<shopsModel> getApiShopsDataItem(){
 		return selectMapper.getApiShopsDataItem();
 	}
+
+//	public testJoinModel getApiTestJoin(){
+//		return selectMapper.getApiTestJoin();
+//	}
 
 
 }

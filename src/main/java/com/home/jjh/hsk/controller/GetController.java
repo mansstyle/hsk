@@ -18,14 +18,33 @@ public class GetController {
 
 	@GetMapping("/getapiuser")
 	public String getApiUser(@RequestParam("email") String email){
-		List<userModel> userModelData = getService.getApiUser(email);
+		userModel userModelData = getService.getApiUser(email);
 		JsonObject obj = new JsonObject();
 		obj.addProperty("errCd" , 0);
 		obj.addProperty("errMsg" , "");
+
+
 		Gson gson = new Gson();
 		String jsonData = gson.toJson(userModelData) ;
 		JsonElement element = gson.fromJson(jsonData, JsonElement.class);
 		obj.add("result" , element);
+
+//		if (element == null){
+//			String emptyJsonData = gson.toJson(new userModel(
+//					"2" ,
+//					"displayname" ,
+//					"email" ,
+//					"bannerId" ,
+//					"banner_id" ,
+//					"phoneNumber" ,
+//					"photoUrl" ,
+//					"providerId"
+//			) ) ;
+//			obj.add("result" , gson.fromJson(emptyJsonData, JsonElement.class) );
+//		}else{
+//			obj.add("result" , element);
+//		}
+
 		return obj.toString();
 	}
 
@@ -112,4 +131,20 @@ public class GetController {
 
 		return obj.toString();
 	}
+
+
+//	@RequestMapping(method = RequestMethod.GET, path = "/getApiTestJoin")
+//	public String getApiTestJoin(){
+//
+//		testJoinModel data = getService.getApiTestJoin();
+//		JsonObject obj = new JsonObject();
+//		obj.addProperty("errCd" , 0);
+//		obj.addProperty("errMsg" , "");
+//		Gson gson = new Gson();
+//		String jsonData = gson.toJson(data) ;
+//		JsonElement element = gson.fromJson(jsonData, JsonElement.class);
+//		obj.add("result" , element);
+//
+//		return obj.toString();
+//	}
 }
