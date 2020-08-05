@@ -10,6 +10,8 @@
 <!--		values( #{uid} , #{displayname} , #{email} , #{bannerId} , #{phoneNumber} , #{photoUrl} , #{providerId} , #{tokenGoogle})-->
 <!--	</insert>-->
 
+
+
 	<!-- 사용자 등록 -->
 	<select id="setApiUser" resultType="com.home.jjh.hsk.model.userModel" parameterType="java.util.HashMap">
 		insert into user(
