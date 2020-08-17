@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.home.jjh.hsk.mapper.SelectMapper">
+
     <!-- 유저데이타 개인 유저 데이타 -->
     <select id="getApiUser" resultType="com.home.jjh.hsk.model.userModel">
         SELECT uid ,
@@ -102,25 +103,22 @@
 
 
 	<select id="getApiTestJoin" resultType="com.home.jjh.hsk.model.testJoinModel">
-		SELECT adId,
-    		dataAd,
-    		emgContent,
-    		emgTitle,
-    		lastAos,
-    		lastIos,
-    		upMsgAos,
-    		upMsgIos,
-    		upTitleAos,
-    		upTitleIos,
-    		verAos,
-    		verIos,
-			adDetailUrl ,
-			adMsg ,
-			adNo ,
-			adStoreName ,
-			adUrl
-		from adintro
-		right join dataad a
-		on adintro.dataAd = a.adId;
+		select newitem.itemId ,
+       		newitem.shopTitle ,
+       		shopItemDetailUrl
+		from newitem
+        inner join item i on 1000000322 = i.itemId;
 	</select>
+
+
+	<select id="getApiMainBanner" resultType="com.home.jjh.hsk.model.mainBannerItem">
+		SELECT
+    		adId ,
+    		bannerId ,
+    		imgUrl ,
+    		itemClickUrl
+		FROM `mainbanneritem`
+	</select>
+
+
 </mapper>

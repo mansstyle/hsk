@@ -133,18 +133,33 @@ public class GetController {
 	}
 
 
-//	@RequestMapping(method = RequestMethod.GET, path = "/getApiTestJoin")
-//	public String getApiTestJoin(){
-//
-//		testJoinModel data = getService.getApiTestJoin();
-//		JsonObject obj = new JsonObject();
-//		obj.addProperty("errCd" , 0);
-//		obj.addProperty("errMsg" , "");
-//		Gson gson = new Gson();
-//		String jsonData = gson.toJson(data) ;
-//		JsonElement element = gson.fromJson(jsonData, JsonElement.class);
-//		obj.add("result" , element);
-//
-//		return obj.toString();
-//	}
+	@RequestMapping(method = RequestMethod.GET, path = "/getApiMainBanner")
+	public String getApiMainBanner(){
+		List<shopsModel> data = getService.getApiMainBanner();
+		JsonObject obj = new JsonObject();
+		obj.addProperty("errCd" , 0);
+		obj.addProperty("errMsg" , "");
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(data) ;
+		JsonElement element = gson.fromJson(jsonData, JsonElement.class);
+		obj.add("result" , element);
+
+		return obj.toString();
+	}
+
+
+	@RequestMapping(method = RequestMethod.GET, path = "/getApiTestJoin")
+	public String getApiTestJoin(){
+
+		testJoinModel data = getService.getApiTestJoin();
+		JsonObject obj = new JsonObject();
+		obj.addProperty("errCd" , 0);
+		obj.addProperty("errMsg" , "");
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(data) ;
+		JsonElement element = gson.fromJson(jsonData, JsonElement.class);
+		obj.add("result" , element);
+
+		return obj.toString();
+	}
 }

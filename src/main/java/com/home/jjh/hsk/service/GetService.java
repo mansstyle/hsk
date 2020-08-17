@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+//계산 로직등..
 @Service
 public class GetService {
 
@@ -17,14 +18,10 @@ public class GetService {
 	/*user data*/
 	public userModel getApiUser(@RequestParam("email") String email){
 		return selectMapper.getApiUser(email);
-
 	}
 
 	/*user data*/
-	public List<adModel> getApiAd(){
-		return selectMapper.getApiAd();
-
-	}
+	public List<adModel> getApiAd(){return selectMapper.getApiAd();}
 
 	/*user data*/
 	public List<introModel> getApiIntro(){
@@ -47,9 +44,13 @@ public class GetService {
 		return selectMapper.getApiShopsDataItem();
 	}
 
-//	public testJoinModel getApiTestJoin(){
-//		return selectMapper.getApiTestJoin();
-//	}
+	public List<shopsModel> getApiMainBanner(){
+		return selectMapper.getApiMainBanner();
+	}
+
+	public testJoinModel getApiTestJoin(){
+		return selectMapper.getApiTestJoin();
+	}
 
 
 }

@@ -24,6 +24,10 @@ public interface SelectMapper {
     List<shopsModel> getApiShopsDataItem();
 
     //
+    List<shopsModel> getApiMainBanner();
+
+
+    //
     testJoinModel getApiTestJoin();
 
 

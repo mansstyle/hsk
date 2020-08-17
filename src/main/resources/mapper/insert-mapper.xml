@@ -2,15 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.home.jjh.hsk.mapper.InsertMapper">
 
-	<!-- 사용자 등록 -->
-<!--	<insert id="setApiUser" parameterType="com.home.jjh.hsk.model.userModel">-->
-<!--		insert into user(-->
-<!--		    uid , displayname , email , bannerId , phoneNumber , photoUrl , providerId , tokenGoogle-->
-<!--		)-->
-<!--		values( #{uid} , #{displayname} , #{email} , #{bannerId} , #{phoneNumber} , #{photoUrl} , #{providerId} , #{tokenGoogle})-->
-<!--	</insert>-->
-
-
 
 	<!-- 사용자 등록 -->
 	<select id="setApiUser" resultType="com.home.jjh.hsk.model.userModel" parameterType="java.util.HashMap">
@@ -22,15 +13,15 @@
 
 
 	<!-- 베너 등록 -->
-	<insert id="setApiMainBannerItem" parameterType="com.home.jjh.hsk.model.mainBannerItem">
+	<select id="setApiMainBannerItem" parameterType="com.home.jjh.hsk.model.mainBannerItem">
 		insert into mainbanneritem (
 			adId, bannerId, imgUrl, itemClickUrl
 		)
 		values( #{adId} , #{bannerId} , #{imgUrl} , #{itemClickUrl} )
-	</insert>
+	</select>
 
 	<!-- 스토어 등록 -->
-	<insert id="insertShop" parameterType="com.home.jjh.hsk.model.shopsModel">
+	<select id="insertShop" parameterType="com.home.jjh.hsk.model.shopsModel">
 		insert into shops (
 			shopId ,
 			addInfoAsPhone ,
@@ -76,11 +67,11 @@
 			#{shopMainImg},
 			#{shopName}
 		)
-	</insert>
+	</select>
 
 
 	<!-- 스토어 등록 -->
-	<insert id="insertNewItem" parameterType="com.home.jjh.hsk.model.itemModel">
+	<select id="insertNewItem" parameterType="com.home.jjh.hsk.model.itemModel">
 		insert into item (
 			shopId,
 			shopItemDetailUrl,
@@ -101,10 +92,10 @@
 			#{shopTitle} ,
 			#{itemId}
 		)
-	</insert>
+	</select>
 
-	<!-- 스토어 등록 -->
-	<insert id="insertItemDetail" parameterType="com.home.jjh.hsk.model.itemDetailModel">
+	<!-- 아이템 디테일 등록 -->
+	<select id="insertItemDetail" parameterType="com.home.jjh.hsk.model.itemDetailModel">
 		insert into shopItemDetailArray (
 			itemId ,
 			detailItemCategori ,
@@ -137,10 +128,10 @@
 			#{shopItemPriceSale} ,
 			#{shopItemUrl}
 		)
-	</insert>
+	</select>
 
 	<!-- 스토어 등록 -->
-	<insert id="insertEvent" parameterType="com.home.jjh.hsk.model.eventModel">
+	<select id="insertEvent" parameterType="com.home.jjh.hsk.model.eventModel">
 		insert into event (
 			eventId ,
 			clickCount ,
@@ -159,6 +150,6 @@
 			#{imgUrlMain},
 			#{startDate}
 		)
-	</insert>
+	</select>
 
 </mapper>
