@@ -25,8 +25,6 @@ public interface SelectMapper {
 
     //
     List<shopsModel> getApiMainBanner();
-
-
     //
     testJoinModel getApiTestJoin();
 

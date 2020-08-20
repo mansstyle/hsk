@@ -14,40 +14,29 @@ public class GetService {
 
 	@Autowired
 	private SelectMapper selectMapper;
-
 	/*user data*/
 	public userModel getApiUser(@RequestParam("email") String email){
 		return selectMapper.getApiUser(email);
 	}
-
 	/*user data*/
 	public List<adModel> getApiAd(){return selectMapper.getApiAd();}
-
 	/*user data*/
 	public List<introModel> getApiIntro(){
 		return selectMapper.getApiIntro();
 	}
-
 	public List<eventModel> getApiEvent(){
 		return selectMapper.getApiEvent();
 	}
-
 	public List<itemModel> getApiItem(){
 		return selectMapper.getApiItem();
 	}
-
 	public List<adDataModel> getApiAdDataItem(){
 		return selectMapper.getApiAdDataItem();
 	}
-
 	public List<shopsModel> getApiShopsDataItem(){
 		return selectMapper.getApiShopsDataItem();
 	}
-
-	public List<shopsModel> getApiMainBanner(){
-		return selectMapper.getApiMainBanner();
-	}
-
+	public List<shopsModel> getApiMainBanner(){ return selectMapper.getApiMainBanner();}
 	public testJoinModel getApiTestJoin(){
 		return selectMapper.getApiTestJoin();
 	}
