@@ -24,7 +24,6 @@ public class PostService {
 	public void insertItemDetail (itemDetailModel itemDetailModel){insertMapper.insertItemDetail(itemDetailModel);}
 	public void insertEvent (eventModel eventModel){insertMapper.insertEvent(eventModel);}
 
-//	public String insertEvent (eventModel eventModel){
-//		return insertMapper.insertEvent(eventModel).toString();
-//	}
+	public void insertTbScore (tbScoreModel tbScoreModel){insertMapper.insertTbScore(tbScoreModel);}
+
 }

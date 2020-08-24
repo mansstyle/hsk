@@ -151,4 +151,28 @@
 			#{startDate}
 		)
 	</select>
+
+	<!-- 스토어 등록 -->
+	<select id="insertTbScore" parameterType="com.home.jjh.hsk.model.tbScoreModel">
+		insert into tbscore (
+			itemId ,
+			shopId ,
+			itemClick ,
+			itemLike ,
+			shopLiike ,
+			itemShare ,
+			shopShare ,
+			shopClick
+		)
+		values(
+			#{itemId} ,
+			#{shopId} ,
+			#{itemClick} ,
+			#{itemLike} ,
+			#{shopLiike} ,
+			#{itemShare} ,
+			#{shopShare} ,
+			#{shopClick}
+		)
+	</select>
 </mapper>

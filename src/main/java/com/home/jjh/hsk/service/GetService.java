@@ -27,9 +27,7 @@ public class GetService {
 	public List<eventModel> getApiEvent(){
 		return selectMapper.getApiEvent();
 	}
-	public List<itemModel> getApiItem(){
-		return selectMapper.getApiItem();
-	}
+	public List<itemModel> getApiItem(){return selectMapper.getApiItem();}
 	public List<adDataModel> getApiAdDataItem(){
 		return selectMapper.getApiAdDataItem();
 	}

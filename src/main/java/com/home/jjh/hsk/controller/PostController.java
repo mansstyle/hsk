@@ -37,7 +37,6 @@ public class PostController {
 
 		JsonObject obj = new JsonObject();
 
-
 		try{
 			obj.addProperty("errCd" , 0);
 			obj.addProperty("errMsg" , "등록되었습니다.");
@@ -48,8 +47,6 @@ public class PostController {
 			obj.addProperty("errMsg" , "이미 등록되었습니다.");
 			System.out.println("error");
 		}
-
-
 
 		Gson gson = new Gson();
 		String jsonData = null ;
@@ -72,6 +69,11 @@ public class PostController {
 	@PostMapping("/insertEvent")
 	public void insertEventItem(@RequestBody eventModel eventModel){
 		postService.insertEvent(eventModel) ;
+	}
+
+	@PostMapping("/insertTbScore")
+	public void insertTbScore(@RequestBody tbScoreModel tbScoreModel){
+		postService.insertTbScore(tbScoreModel) ;
 	}
 
 }
