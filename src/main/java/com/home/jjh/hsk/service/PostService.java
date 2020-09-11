@@ -26,4 +26,5 @@ public class PostService {
 
 	public void insertTbScore (tbScoreModel tbScoreModel){insertMapper.insertTbScore(tbScoreModel);}
 
+
 }

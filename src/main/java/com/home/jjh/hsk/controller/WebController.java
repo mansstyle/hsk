@@ -1,22 +1,31 @@
 package com.home.jjh.hsk.controller;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.home.jjh.hsk.model.*;
-import com.home.jjh.hsk.service.GetService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class WebController {
 
-	@RequestMapping("/hello")
-	public String HelloController(){
-		return "hello, spring boot!";
+	@RequestMapping(path = "/" , method = RequestMethod.GET)
+	public String main(){
+		return "home";
 	}
+
+	@RequestMapping(path = "/store" , method = RequestMethod.GET)
+	public String store(){
+		return "addStore";
+	}
+
+	@RequestMapping(path = "/event" , method = RequestMethod.GET)
+	public String event(){
+		return "addEvent";
+	}
+
+	@RequestMapping(path = "/eventlist" , method = RequestMethod.GET)
+	public String eventList(){
+		return "eventlist";
+	}
+
 
 }

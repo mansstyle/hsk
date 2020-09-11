@@ -6,8 +6,8 @@ import lombok.ToString;
 
 @Getter @Setter @ToString
 public class TestSubModel{
-	private String subAttr1;
-	private String subAttr2;
+	private final String subAttr1;
+	private final String subAttr2;
 
 	public TestSubModel(String subAttr1, String subAttr2) {
 		this.subAttr1 = subAttr1;

@@ -1,0 +1,42 @@
+h1 {
+    width: 80%;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 10%;
+}
+input {
+    width: 80%;
+    height: 35px;
+    margin-bottom: 20px;
+    align-items: center;
+    margin-left: 10%;
+}
+strong {
+    width: 80%;
+    font-family: "Droid Sans";
+    font-size: 17px;
+    margin-left: 10%;
+}
+
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: darkslategray;
+    list-style-type: none;
+}
+.nav-item {
+    width: 20%;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.nav-item a {
+    width: 20%;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+}

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>monggle</title>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <style>
+        h1 {
+            width: 80%;
+            text-align: center;
+            margin-top: 100px;
+            margin-bottom: 100px;
+            margin-left: 10%;
+        }
+        input {
+            width: 80%;
+            height: 35px;
+            margin-bottom: 20px;
+            align-items: center;
+            margin-left: 10%;
+        }
+        strong {
+            width: 80%;
+            font-family: "Droid Sans";
+            font-size: 17px;
+            margin-left: 10%;
+        }
+
+        .nav-container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: darkslategray;
+            list-style-type: none;
+        }
+        .nav-item {
+            width: 20%;
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        .nav-item a {
+            width: 20%;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+
+    <script>
+        function f() {
+
+
+            // alert("hello");
+            //get
+            // 간단한 HTTP-GET Request
+            const http_req = new XMLHttpRequest()
+            //
+            http_req.open('GET', 'http://localhost:8080/getapievent')
+            http_req.getResponseHeader('Access-Control-Allow-Origin: *')
+            http_req.send()
+
+            http_req.onload = () =>
+            {
+                // console.log('Flask 서버로 부터의 응답은: ' + http_req.responseText)
+                //console.log(JSON.stringify(http_req.responseText))
+
+                var obj = JSON.parse(http_req.responseText, function (key, value) {
+                    //
+                    if (key == 'result'){
+
+                        var aa = JSON.stringify(value)
+                        var jsonData = JSON.parse(aa);
+
+                        for(var i=0; i<jsonData.length; i++) {
+                            addRow('addrow' , "---------=====-------")
+
+                            var aaa = JSON.stringify(jsonData[i])
+                            var bbbbb = JSON.parse(aaa, function (key, value) {
+                                console.log('---------- bbbb0000000')
+                                console.log('key' + key + ' :: value : ' + value)
+
+                                //
+                                addRow('addrow' , value)
+                                return value
+                            });
+                        }
+                    }else {
+                        console.log('----------')
+                        console.log('key' + key + ' :: value : ' + value)
+                    }
+                    //
+                    return value;
+
+                });
+            }
+
+
+        }
+
+        function createListView(spacecrafts){
+            var listView=document.createElement('ol');
+            for(var i=0;i<spacecrafts.length;i++)
+            {
+                var listViewItem=document.createElement('li');
+                listViewItem.appendChild(document.createTextNode(spacecrafts[i]));
+                listView.appendChild(listViewItem);
+            }
+            return listView;
+        }
+
+        function wssConnect(){
+            var ws = new WebSocket("wss://ws.coinbit.global/v1/ws");
+
+            ws.onmessage = function(event) {
+
+                if (event.data == "[\"SYS\",\"INFO\",[\"WELCOME\",\"1.0\"]]"){
+                    // ws.send("{\"op\":\"SUBSCRIBE\",\"arg\":[\"TICKER:*\"],\"id\":\"08bf9196-86f5-f86a-0d82-f83a18906836\"}")
+                    ws.send("{\"op\":\"SUBSCRIBE\",\"arg\":[\"TRADE:XRP-KRW\"],\"id\":\"dc344c8e-21bd-115f-f6c6-a67f4198254f\"}");
+                    ws.send("{\"op\":\"UNSUBSCRIBE\",\"arg\":[\"TRADE:XRP-KRW\"],\"id\":\"fe11fb93-1653-27f4-37f5-9f9926832d90\"}");
+                    ws.send("{\"op\":\"SUBSCRIBE\",\"arg\":[\"ORDERBOOK:XRP-KRW\"],\"id\":\"551fc8a0-e802-d0f3-463b-93d7c7daa59d\"}");
+                    ws.send("{\"op\":\"UNSUBSCRIBE\",\"arg\":[\"ORDERBOOK:XRP-KRW\"],\"id\":\"628ef960-b4bb-a06f-5b77-91c6725edcfc\"}");
+                    ws.send("{\"op\":\"SUBSCRIBE\",\"arg\":[\"TICKER:*\"],\"id\":\"172d0cda-4cc1-1d76-03d8-41c8aef1624d\"}");
+                    ws.send("{\"op\":\"SUBSCRIBE\",\"arg\":[\"TRADE:XRP-KRW\"],\"id\":\"c31734d7-fe6d-e95d-49f7-f001638ae0c9\"}");
+                    ws.send("{\"op\":\"SUBSCRIBE\",\"arg\":[\"ORDERBOOK:XRP-KRW\"],\"id\":\"b0a2d4d0-efe8-cb1e-542d-b3e43ca5c3ab\"}");
+                    ws.send("{\"op\":\"SUBSCRIBE\",\"arg\":[\"TICKER:*\"],\"id\":\"493ed5ac-0df4-7a6d-9a29-c19496c596b2\"}");
+                    ws.send("{\"op\":\"UNSUBSCRIBE\",\"arg\":[\"ORDERBOOK:XRP-KRW\"],\"id\":\"052edce9-04b3-935e-a66f-d2f83c90e3dd\"}");
+                    ws.send("{\"op\":\"SUBSCRIBE\",\"arg\":[\"ORDERBOOK:XRP-KRW\"],\"id\":\"88eaf2e5-8985-00d3-abec-e49daed01351\"}");
+                    ws.send("{\"op\":\"UNSUBSCRIBE\",\"arg\":[\"TRADE:XRP-KRW\"],\"id\":\"7abaf7b6-1871-ffcb-eaf2-59557f5bc1d0\"}");
+                    ws.send("{\"op\":\"SUBSCRIBE\",\"arg\":[\"TRADE:XRP-KRW\"],\"id\":\"8ebcb8f7-b770-3ad2-6313-156d7994a206\"}");
+                    // ws.send("");
+
+                }else{
+                    // document.getElementById('tickerlabel').value = event.data
+                    $("#tickerlabel").text(event.data);
+
+                }
+
+
+                console.log("received: " + event.data);
+            };
+
+            ws.onclose = function() {
+                console.log("External Socket closed");
+            };
+
+            ws.onopen = function() {
+                console.log("Connected to external ws");
+                ws.send("Hello from " + navigator.userAgent);
+            };
+        }
+
+        function addRow(tableid , data) {
+            var table = document.getElementById(tableid);
+            var rowlen = table.rows.length;        //테이블에 속한 행의 수를 구하는 것
+            var row = table.insertRow(rowlen-1);    // 테이블에 행을 추가하는 것입니다.
+
+            if((data + "").startsWith("http://") ){
+                console.log("dddddddd ::::  " + data) ;
+                row.insertCell(0).innerHTML = "<img width='300px' src=\""+data +"\">" ;
+            }else{
+                row.insertCell(0).innerHTML = data;
+            }
+
+
+
+
+
+        }
+
+
+    </script>
+
+</head>
+<body>
+
+    <script>f()</script>
+
+    <!--    <header>이벤트 추가</header>-->
+    <nav>
+        <ul class="nav-container">
+            <li style="width: 25%" class="nav-item"> <a href=""> home </a> </li>
+            <li class="nav-item"> <a href="http://localhost:8080/event">이벤트등록</a> </li>
+            <li class="nav-item"> <a href="http://localhost:8080/store">스토어등록</a> </li>
+            <li class="nav-item"> <a href="">탭3</a> </li>
+            <li class="nav-item"> <a href="">탭4</a> </li>
+        </ul>
+    </nav>
+    <h1>이벤트 리스트</h1>
+
+<!--    <button onclick="f()">list호출</button>-->
+
+    <button onclick="wssConnect()">wss connect</button>
+
+    </br>
+
+    <LABEL id="tickerlabel">ticker</LABEL>
+    <TABLE id="addrow"></TABLE>
+
+</body>
+</html>

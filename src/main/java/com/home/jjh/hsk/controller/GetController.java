@@ -16,6 +16,7 @@ public class GetController {
 	@Autowired
 	private GetService getService;
 
+	@CrossOrigin("*")
 	@GetMapping("/getapiuser")
 	public String getApiUser(@RequestParam("email") String email){
 		userModel userModelData = getService.getApiUser(email);
@@ -48,6 +49,7 @@ public class GetController {
 		return obj.toString();
 	}
 
+	@CrossOrigin("*")
 	@GetMapping("/getapiad")
 	public String getApiAd(){
 		List<adModel> data = getService.getApiAd();
@@ -61,6 +63,7 @@ public class GetController {
 		return obj.toString();
 	}
 
+	@CrossOrigin("*")
 	@GetMapping("/getapiintro")
 	public String getApiIntro(){
 		List<introModel> data = getService.getApiIntro();
@@ -76,6 +79,7 @@ public class GetController {
 	}
 
 
+	@CrossOrigin("*")
 	@GetMapping("/getapievent")
 	public String getApiEvent(){
 		List<eventModel> data = getService.getApiEvent();
@@ -90,6 +94,7 @@ public class GetController {
 		return obj.toString();
 	}
 
+	@CrossOrigin("*")
 	@GetMapping("/getapiitem") //추후 스토어 이름 .. 등등으로 검색 가능하도록 추가.
 	public String getApiItem(){
 		List<itemModel> data = getService.getApiItem();
@@ -104,6 +109,7 @@ public class GetController {
 		return obj.toString();
 	}
 
+	@CrossOrigin("*")
 	@GetMapping("/getapiaddata")
 	public String getApiAdDataItem(){
 		List<adDataModel> data = getService.getApiAdDataItem();
@@ -118,6 +124,7 @@ public class GetController {
 		return obj.toString();
 	}
 
+	@CrossOrigin("*")
 	@RequestMapping(method = RequestMethod.GET, path = "/getapishopdata")
 	public String getApiShopsItem(){
 		List<shopsModel> data = getService.getApiShopsDataItem();
@@ -132,7 +139,7 @@ public class GetController {
 		return obj.toString();
 	}
 
-
+	@CrossOrigin("*")
 	@RequestMapping(method = RequestMethod.GET, path = "/getApiMainBanner")
 	public String getApiMainBanner(){
 		List<shopsModel> data = getService.getApiMainBanner();
@@ -147,7 +154,7 @@ public class GetController {
 		return obj.toString();
 	}
 
-
+	@CrossOrigin("*")
 	@RequestMapping(method = RequestMethod.GET, path = "/getApiTestJoin")
 	public String getApiTestJoin(){
 
@@ -162,4 +169,5 @@ public class GetController {
 
 		return obj.toString();
 	}
+
 }
