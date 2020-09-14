@@ -19,6 +19,9 @@ public class GetController {
 	@CrossOrigin("*")
 	@GetMapping("/getapiuser")
 	public String getApiUser(@RequestParam("email") String email){
+
+		System.out.println("inininin");
+
 		userModel userModelData = getService.getApiUser(email);
 		JsonObject obj = new JsonObject();
 		obj.addProperty("errCd" , 0);

@@ -5,6 +5,7 @@
     <title>monggle</title>
 
 
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -83,6 +84,7 @@
 
                         for(var i=0; i<jsonData.length; i++) {
                             addRow('addrow' , "---------=====-------")
+                            addRow('addrow' , "deleteItem")
 
                             var aaa = JSON.stringify(jsonData[i])
                             var bbbbb = JSON.parse(aaa, function (key, value) {
@@ -141,7 +143,15 @@
 
                 }else{
                     // document.getElementById('tickerlabel').value = event.data
-                    $("#tickerlabel").text(event.data);
+
+                    if (event.data.toString().indexOf("BTC-KRW") > 0){
+
+                        var aaa = event.data.toString().split(",")
+                        $("#tickerlabel").text(
+                            aaa[0] + " :: " + aaa[1] + "\n"
+                            +aaa[3] + " :: " + aaa[4]
+                        );
+                    }
 
                 }
 
@@ -167,16 +177,16 @@
             if((data + "").startsWith("http://") ){
                 console.log("dddddddd ::::  " + data) ;
                 row.insertCell(0).innerHTML = "<img width='300px' src=\""+data +"\">" ;
+                row.insertCell(0).innerHTML = "</BR><button onclick='deleteItem()'>지우기 클릭</button>" ;
             }else{
                 row.insertCell(0).innerHTML = data;
             }
-
-
-
-
-
         }
 
+        function deleteItem() {
+
+            alert('deleteItems')
+        }
 
     </script>
 

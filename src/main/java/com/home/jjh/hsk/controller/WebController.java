@@ -27,5 +27,10 @@ public class WebController {
 		return "eventlist";
 	}
 
+	@RequestMapping(path = "/login" , method = RequestMethod.GET)
+	public String login(){
+		return "login";
+	}
+
 
 }

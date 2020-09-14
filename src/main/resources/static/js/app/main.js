@@ -1,7 +1,10 @@
-function checkItem( title ) {
-    if (title != "" && title != null){
-        alert("ok in title")
+function checkLoginSession() {
+    if (sessionStorage.getItem("myLoginData") != null){
+        alert("1")
+        // sessionStorage.clear()
     }else{
-        alert("khong duoc")
+        alert("2")
+        // sessionStorage.setItem("myLoginData" , "userdata")
+
     }
 }

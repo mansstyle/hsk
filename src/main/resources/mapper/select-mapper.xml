@@ -121,4 +121,8 @@
 	</select>
 
 
+<!--	<select id="getApiMainBanner" resultType="com.home.jjh.hsk.model.mainBannerItem">-->
+<!--		delete event FROM event where eventId = #{eventId} ;-->
+<!--	</select>-->
+
 </mapper>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>monggle</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script src="/static/js/app/main.js"></script>
+    <script src="/static/js/app/network.js"></script>
+
+    <style>
+        h1 {
+            width: 80%;
+            text-align: center;
+            margin-top: 100px;
+            margin-bottom: 100px;
+            margin-left: 10%;
+        }
+
+        input {
+            width: 80%;
+            height: 35px;
+            margin-bottom: 20px;
+            align-items: center;
+            margin-left: 10%;
+        }
+
+        strong {
+            width: 80%;
+            font-family: "Droid Sans";
+            font-size: 17px;
+            margin-left: 10%;
+        }
+
+        .nav-container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: darkslategray;
+            list-style-type: none;
+        }
+
+        .nav-item {
+            width: 20%;
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        .nav-item a {
+            width: 20%;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+
+    <script>
+        function checkItem() {
+            console.log('--------------------')
+            console.log(document.getElementById('userId').value)
+            console.log(document.getElementById('userPasswd').value)
+            console.log('--------------------')
+
+            var userId = document.getElementById('userId').value
+            var userPasswd = document.getElementById('userPasswd').value
+
+            //
+            let regex = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+
+            if (userId === "") {
+                alert('아이디를 입력해 주세요')
+            }  else if (userPasswd === "") {
+                alert('패스워드를 입력해주세요')
+            } else {
+                //check id passwd
+                sendLoginRequest()
+                // alert("등록")
+            }
+        }
+
+    </script>
+
+
+</head>
+<body>
+<!--    <header>이벤트 추가</header>-->
+<nav>
+    <ul class="nav-container">
+        <li style="width: 25%" class="nav-item"><a href="http://localhost:8080/"> home </a></li>
+        <li class="nav-item"><a href="http://localhost:8080/event">이벤트등록</a></li>
+        <li class="nav-item"><a href="">스토어등록</a></li>
+        <li class="nav-item"><a href="http://localhost:8080/eventlist">탭3</a></li>
+        <li class="nav-item"><a href="">탭4</a></li>
+    </ul>
+</nav>
+
+
+<h1>스토어 등록</h1>
+<form>
+    <p>
+        <strong>아이디</strong>
+        <input id="userId" type="text" name="name" placeholder="id">
+    </p>
+    <p>
+        <strong>패스워드</strong>
+        <input id="userPasswd" type="password" name="name" placeholder="password">
+    </p>
+
+    <p>
+        <input type="button" value="제출" onclick="checkItem()">
+    </p>
+</form>
+</body>
+</html>
