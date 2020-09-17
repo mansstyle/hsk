@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>monggle</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <style>
+        h1 {
+            width: 80%;
+            text-align: center;
+            margin-top: 100px;
+            margin-bottom: 100px;
+            margin-left: 10%;
+        }
+        input {
+            width: 80%;
+            height: 35px;
+            margin-bottom: 20px;
+            align-items: center;
+            margin-left: 10%;
+        }
+        strong {
+            width: 80%;
+            font-family: "Droid Sans";
+            font-size: 17px;
+            margin-left: 10%;
+        }
+
+        .nav-container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: darkslategray;
+            list-style-type: none;
+        }
+        .nav-item {
+            width: 20%;
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        .nav-item a {
+            width: 20%;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+
+    <script>
+        function checkItem(mdTitle ,mdMessage ,mdItemId ,mdImgUrl) {
+
+            console.log('--------------------')
+            console.log(document.getElementById('mdTitle').value)
+            console.log(document.getElementById('mdMessage').value)
+            console.log(document.getElementById('mdItemId').value)
+            console.log(document.getElementById('mdImgUrl').value)
+            console.log('--------------------')
+
+            var mdTitle = document.getElementById('mdTitle').value
+            var mdMessage = document.getElementById('mdMessage').value
+            var mdItemId = document.getElementById('mdItemId').value
+            var mdImgUrl = document.getElementById('mdImgUrl').value
+
+            //
+            let regex = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+
+            if (mdTitle === ""){
+                alert('MD 타이틀을 입력해주세요')
+            }else if (mdMessage === ""){
+                alert('MD 내용을 입력해주세요')
+            }else if (mdImgUrl === ""){
+                alert('MD 이미지 주소를 입력해주세요')
+            }else if (!regex.test(document.getElementById('mdImgUrl').value)){
+                alert("function vao imgUrl 정규식 체크:: false  " + document.getElementById('codiImgUrl').value)
+            }else if (mdItemId === ""){
+                alert('MD아이디 입력해주세요')
+            }else{
+                //등록
+                sendRequest(mdTitle ,mdMessage ,mdItemId ,mdImgUrl)
+                // alert("등록")
+            }
+
+            //
+            //send data base
+        }
+
+        function callCal(){
+
+        }
+
+        function sendRequest(mdTitle ,mdMessage ,mdItemId ,mdImgUrl) {
+            //post
+            var xhr = new XMLHttpRequest();
+
+            var data = {
+                mdTitle : mdTitle,
+                mdMessage : mdMessage,
+                mdItemId : mdItemId,
+                mdImgUrl : mdImgUrl
+            };
+
+
+            xhr.onload = function() {
+                if (xhr.status === 200 || xhr.status === 201) {
+
+                    console.log('--------------------')
+                    console.log('add ok')
+                    console.log('--------------------')
+                    alert('정상적으로 등록 되었습니다.')
+                    console.log(xhr.responseText);
+
+                    //내용 초기화
+                    document.getElementById('mdTitle').value = ""
+                    document.getElementById('mdMessage').value = ""
+                    document.getElementById('mdItemId').value = ""
+                    document.getElementById('mdImgUrl').value = ""
+                    //
+                } else {
+                    console.log('--------------------')
+                    console.log('add fail')
+                    console.log('--------------------')
+
+                    alert('서버와 통신이 정상적이지 않습니다.\n다시 시도해주세요.')
+                    console.error(xhr.responseText);
+                }
+            };
+
+            xhr.open('POST', 'http://localhost:8080/insertTbMDPickList');
+            xhr.setRequestHeader('Content-Type', 'application/json'); // 컨텐츠타입을 json으로
+            xhr.send(JSON.stringify(data)); // 데이터를 stringify해서 보냄
+
+        }
+
+
+    </script>
+
+
+
+</head>
+<body>
+
+
+<!--    <header>이벤트 추가</header>-->
+<nav>
+    <ul class="nav-container">
+        <li style="width: 25%" class="nav-item"> <a href="http://localhost:8080/"> home </a> </li>
+        <li class="nav-item"> <a href="http://localhost:8080/event">이벤트등록</a> </li>
+        <li class="nav-item"> <a href="">스토어등록</a> </li>
+        <li class="nav-item"> <a href="http://localhost:8080/eventlist">탭3</a> </li>
+        <li class="nav-item"> <a href="">탭4</a> </li>
+    </ul>
+</nav>
+
+
+<h1>MDPick 등록</h1>
+<form>
+    <p>
+        <strong>코디이름</strong>
+        <input id="mdTitle" type="text" name="name" placeholder="타이틀">
+    </p>
+    <p>
+        <strong>코디내용</strong>
+        <input id="mdMessage" type="text" name="name" placeholder="이벤트내용">
+    </p>
+    <p>
+        <strong>아이템ID</strong>
+        <input id="mdItemId" type="text" name="name" placeholder="이미지내용">
+    </p>
+    <p>
+        <strong>노출될 이미지 주소</strong>
+        <input id="mdImgUrl" type="text" name="name" placeholder="이미지 주소">
+    </p>
+    <p>
+
+        <input type="button" value="제출"
+               onclick="checkItem(
+                       document.getElementById(mdTitle) ,
+                       document.getElementById(mdMessage) ,
+                       document.getElementById(mdItemId) ,
+                       document.getElementById(mdImgUrl) ,
+                   )"
+        >
+    </p>
+</form>
+</body>
+</html>

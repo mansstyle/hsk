@@ -30,7 +30,7 @@ public class SLF4JQueryLoggingListener implements QueryExecutionListener {
 	/**
 	 * ? 를 찾는 pattern
 	 */
-	private static Pattern questionPattern = Pattern.compile("\\?{1}");
+	private static final Pattern questionPattern = Pattern.compile("\\?{1}");
 
 	@Override
 	public void beforeQuery(ExecutionInfo executioninfo, List<QueryInfo> list) {
@@ -139,7 +139,7 @@ public class SLF4JQueryLoggingListener implements QueryExecutionListener {
 		}
 	}
 
-	private void writeLog(Object argArray[]) {
+	private void writeLog(Object[] argArray) {
 		switch (logLevel) {
 		case DEBUG:
 			log.debug(logTemplate, argArray);
@@ -167,11 +167,7 @@ public class SLF4JQueryLoggingListener implements QueryExecutionListener {
 	 * @return
 	 */
 	private boolean isExcluedSqlLogging(String query) {
-		if(useExcludeSqlLogging && query.contains("EXCLUDE_SQL_LOGGING")){
-			return true;
-		} else {
-			return false;
-		}		
+		return useExcludeSqlLogging && query.contains("EXCLUDE_SQL_LOGGING");
 	}
 
 	public SLF4JLogLevel getLogLevel() {

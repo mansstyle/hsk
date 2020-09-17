@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>monggle</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+    <style>
+        h1 {
+            width: 80%;
+            text-align: center;
+            margin-top: 100px;
+            margin-bottom: 100px;
+            margin-left: 10%;
+        }
+        input {
+            width: 80%;
+            height: 35px;
+            margin-bottom: 20px;
+            align-items: center;
+            margin-left: 10%;
+        }
+        strong {
+            width: 80%;
+            font-family: "Droid Sans";
+            font-size: 17px;
+            margin-left: 10%;
+        }
+
+        .nav-container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: darkslategray;
+            list-style-type: none;
+        }
+        .nav-item {
+            width: 20%;
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        .nav-item a {
+            width: 20%;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+
+    <script>
+        function checkItem(codiTitle , codiMessage , codiId , codiImgUrl ) {
+
+            console.log('--------------------')
+            console.log(document.getElementById('codiTitle').value)
+            console.log(document.getElementById('codiMessage').value)
+            console.log(document.getElementById('codiId').value)
+            console.log(document.getElementById('codiImgUrl').value)
+            console.log('--------------------')
+
+            var codiTitle = document.getElementById('codiTitle').value
+            var codiMessage = document.getElementById('codiMessage').value
+            var codiId = document.getElementById('codiId').value
+            var codiImgUrl = document.getElementById('codiImgUrl').value
+
+            //
+            let regex = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+
+            if (codiTitle === ""){
+                alert('코디 타이틀을 입력해주세요')
+            }else if (codiMessage === ""){
+                alert('코디 내용을 입력해주세요')
+            }else if (codiImgUrl === ""){
+                alert('코디 이미지 주소를 입력해주세요')
+            }else if (!regex.test(document.getElementById('codiImgUrl').value)){
+                alert("function vao imgUrl 정규식 체크:: false  " + document.getElementById('codiImgUrl').value)
+            }else if (codiId === ""){
+                alert('코디아이디 입력해주세요')
+            }else{
+                //등록
+                sendRequest(codiTitle , codiMessage , codiId , codiImgUrl)
+                // alert("등록")
+            }
+
+            //
+            //send data base
+        }
+
+        function callCal(){
+
+        }
+
+        function sendRequest(codiTitle , codiMessage , codiId , codiImgUrl) {
+            //post
+            var xhr = new XMLHttpRequest();
+
+            var data = {
+                codiMessage : codiMessage,
+                codiImgUrl : codiImgUrl ,
+                codiItemId : codiId,
+                codiTitle : codiTitle
+            };
+
+
+            xhr.onload = function() {
+                if (xhr.status === 200 || xhr.status === 201) {
+
+                    console.log('--------------------')
+                    console.log('add ok')
+                    console.log('--------------------')
+                    alert('정상적으로 등록 되었습니다.')
+                    console.log(xhr.responseText);
+
+                    //내용 초기화
+                    document.getElementById('codiTitle').value = ""
+                    document.getElementById('codiMessage').value = ""
+                    document.getElementById('codiId').value = ""
+                    document.getElementById('codiImgUrl').value = ""
+                    //
+                } else {
+                    console.log('--------------------')
+                    console.log('add fail')
+                    console.log('--------------------')
+
+                    alert('서버와 통신이 정상적이지 않습니다.\n다시 시도해주세요.')
+                    console.error(xhr.responseText);
+                }
+            };
+
+            xhr.open('POST', 'http://localhost:8080/insertTbCodiList');
+            xhr.setRequestHeader('Content-Type', 'application/json'); // 컨텐츠타입을 json으로
+            xhr.send(JSON.stringify(data)); // 데이터를 stringify해서 보냄
+
+        }
+
+
+    </script>
+
+
+
+</head>
+<body>
+
+
+<!--    <header>이벤트 추가</header>-->
+<nav>
+    <ul class="nav-container">
+        <li style="width: 25%" class="nav-item"> <a href="http://localhost:8080/"> home </a> </li>
+        <li class="nav-item"> <a href="http://localhost:8080/event">이벤트등록</a> </li>
+        <li class="nav-item"> <a href="">스토어등록</a> </li>
+        <li class="nav-item"> <a href="http://localhost:8080/eventlist">탭3</a> </li>
+        <li class="nav-item"> <a href="">탭4</a> </li>
+    </ul>
+</nav>
+
+
+<!--uid                   int auto_increment comment '유니크아이디'-->
+<!--primary key,-->
+<!--itemId                int          null,-->
+<!--shopItemDetailUrl     varchar(455) null,-->
+<!--shopItemName          varchar(455) null,-->
+<!--shopItemPriceOriginal varchar(455) null,-->
+<!--shopItemPriceSale     varchar(455) null,-->
+<!--shopItemUrl           varchar(455) null,-->
+<!--shopTitle             varchar(455) null,-->
+<!--itemCategori          varchar(455) null,-->
+<!--shopId                int          null,-->
+<!--itemDetailUrl         varchar(455) null-->
+
+<h1>코디 등록</h1>
+<form>
+    <p>
+        <strong>코디이름</strong>
+        <input id="codiTitle" type="text" name="name" placeholder="타이틀">
+    </p>
+    <p>
+        <strong>코디내용</strong>
+        <input id="codiMessage" type="text" name="name" placeholder="이벤트내용">
+    </p>
+    <p>
+        <strong>아이템ID</strong>
+        <input id="codiId" type="text" name="name" placeholder="이미지내용">
+    </p>
+    <p>
+        <strong>노출될 이미지 주소</strong>
+        <input id="codiImgUrl" type="text" name="name" placeholder="이미지 주소">
+    </p>
+    <p>
+        <input type="button" value="제출"
+               onclick="checkItem(
+                       document.getElementById(codiTitle) ,
+                       document.getElementById(codiMessage) ,
+                       document.getElementById(codiId) ,
+                       document.getElementById(codiImgUrl) ,
+                   )"
+        >
+    </p>
+</form>
+</body>
+</html>

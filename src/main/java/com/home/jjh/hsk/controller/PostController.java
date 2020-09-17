@@ -84,4 +84,23 @@ public class PostController {
 		postService.insertTbScore(tbScoreModel) ;
 	}
 
+	@CrossOrigin("*")
+	@PostMapping("/insertTbCodiList")
+	public void insertTbCodi(@RequestBody tbCodiModel tbScoreModel){
+		postService.insertTbCodiList(tbScoreModel) ;
+	}
+
+	@CrossOrigin("*")
+	@PostMapping("/insertTbMDPickList")
+	public void insertTbMDPick(@RequestBody tbMDPickModel tbMDPickModel){
+		postService.insertTbMDPickList(tbMDPickModel) ;
+	}
+
+
+	@CrossOrigin("*")
+	@PostMapping("/deleteEvent")
+	public void deleteEvent(@RequestBody eventDeleteModel eventDeleteModel){
+		postService.deleteEvent(eventDeleteModel) ;
+	}
+
 }

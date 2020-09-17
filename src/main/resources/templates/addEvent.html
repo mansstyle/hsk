@@ -10,6 +10,18 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
+    <!--  bootstrap  start -->
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+    <script src="js/bootstrap.min.js"></script>
+    <!--  bootstrap  end -->
 
     <style>
         h1 {
@@ -57,7 +69,8 @@
     </style>
 
     <script>
-        function checkItem(title , content , imgContent , imgUrl , startTime , endTime) {
+
+        function checkItem() {
             console.log('--------------------')
             console.log(document.getElementById('eventTitle').value)
             console.log(document.getElementById('eventMessage').value)
@@ -130,8 +143,10 @@
             xhr.onload = function() {
                 if (xhr.status === 200 || xhr.status === 201) {
                     console.log(xhr.responseText);
+                    alert("등록 완료");
                 } else {
                     console.error(xhr.responseText);
+                    alert("오류 발생");
                 }
             };
 
@@ -141,15 +156,168 @@
 
         }
 
+        function sendRequestEventDelete(eventId) {
+            //get
+            // 간단한 HTTP-GET Request
+            // const http_req = new XMLHttpRequest()
+            //
+            // http_req.open("GET", "http://192.168.0.19:8080/getapiad")
+            // http_req.getResponseHeader("Access-Control-Allow-Origin: *")
+            // http_req.send()
+            //
+            // http_req.onload = () => console.log("Flask 서버로 부터의 응답은: " + http_req.responseText)
 
+            //post
+            var xhr = new XMLHttpRequest();
+
+            var data = {
+                eventId : eventId
+            };
+
+
+            xhr.onload = function() {
+                if (xhr.status === 200 || xhr.status === 201) {
+                    console.log(xhr.responseText);
+                    alert("삭제 완료");
+
+                    //
+                    location.reload()
+                } else {
+                    console.error(xhr.responseText);
+                    alert("오류 발생");
+                }
+            };
+
+            xhr.open('POST', 'http://localhost:8080/deleteEvent');
+            xhr.setRequestHeader('Content-Type', 'application/json'); // 컨텐츠타입을 json으로
+            xhr.send(JSON.stringify(data)); // 데이터를 stringify해서 보냄
+
+        }
+
+
+        function f() {
+            // alert("hello");
+            //get
+            // 간단한 HTTP-GET Request
+            const http_req = new XMLHttpRequest()
+            //
+            http_req.open('GET', 'http://localhost:8080/getapievent')
+            http_req.getResponseHeader('Access-Control-Allow-Origin: *')
+            http_req.send()
+
+            http_req.onload = () =>
+            {
+                // console.log('Flask 서버로 부터의 응답은: ' + http_req.responseText)
+                //console.log(JSON.stringify(http_req.responseText))
+
+                var obj = JSON.parse(http_req.responseText, function (key, value) {
+                    //
+                    if (key == 'result'){
+
+                        var aa = JSON.stringify(value)
+                        var jsonData = JSON.parse(aa);
+
+                        for(var i=0; i<jsonData.length; i++) {
+                            addRow('addrow' , "---------=====-------")
+                            addRow('addrow' , "deleteItem")
+
+                            var aaa = JSON.stringify(jsonData[i])
+                            var bbbbb = JSON.parse(aaa, function (key, value) {
+                                console.log('---------- bbbb0000000')
+                                console.log('key' + key + ' :: value : ' + value)
+
+                                //
+                                addRow('addrow' , value , i)
+                                return value
+                            });
+                        }
+                    }else {
+                        console.log('----------')
+                        console.log('key' + key + ' :: value : ' + value)
+                    }
+                    //
+                    return value;
+
+                });
+            }
+
+
+        }
+
+        //
+        function wssConnect(){
+            var ws = new WebSocket("wss://ws.coinbit.global/v1/ws");
+
+            ws.onmessage = function(event) {
+
+                if (event.data == "[\"SYS\",\"INFO\",[\"WELCOME\",\"1.0\"]]"){
+                    // ws.send("{\"op\":\"SUBSCRIBE\",\"arg\":[\"TICKER:*\"],\"id\":\"08bf9196-86f5-f86a-0d82-f83a18906836\"}")
+                    ws.send("{\"op\":\"SUBSCRIBE\",\"arg\":[\"TRADE:XRP-KRW\"],\"id\":\"dc344c8e-21bd-115f-f6c6-a67f4198254f\"}");
+                    ws.send("{\"op\":\"UNSUBSCRIBE\",\"arg\":[\"TRADE:XRP-KRW\"],\"id\":\"fe11fb93-1653-27f4-37f5-9f9926832d90\"}");
+                    ws.send("{\"op\":\"SUBSCRIBE\",\"arg\":[\"ORDERBOOK:XRP-KRW\"],\"id\":\"551fc8a0-e802-d0f3-463b-93d7c7daa59d\"}");
+                    ws.send("{\"op\":\"UNSUBSCRIBE\",\"arg\":[\"ORDERBOOK:XRP-KRW\"],\"id\":\"628ef960-b4bb-a06f-5b77-91c6725edcfc\"}");
+                    ws.send("{\"op\":\"SUBSCRIBE\",\"arg\":[\"TICKER:*\"],\"id\":\"172d0cda-4cc1-1d76-03d8-41c8aef1624d\"}");
+                    ws.send("{\"op\":\"SUBSCRIBE\",\"arg\":[\"TRADE:XRP-KRW\"],\"id\":\"c31734d7-fe6d-e95d-49f7-f001638ae0c9\"}");
+                    ws.send("{\"op\":\"SUBSCRIBE\",\"arg\":[\"ORDERBOOK:XRP-KRW\"],\"id\":\"b0a2d4d0-efe8-cb1e-542d-b3e43ca5c3ab\"}");
+                    ws.send("{\"op\":\"SUBSCRIBE\",\"arg\":[\"TICKER:*\"],\"id\":\"493ed5ac-0df4-7a6d-9a29-c19496c596b2\"}");
+                    ws.send("{\"op\":\"UNSUBSCRIBE\",\"arg\":[\"ORDERBOOK:XRP-KRW\"],\"id\":\"052edce9-04b3-935e-a66f-d2f83c90e3dd\"}");
+                    ws.send("{\"op\":\"SUBSCRIBE\",\"arg\":[\"ORDERBOOK:XRP-KRW\"],\"id\":\"88eaf2e5-8985-00d3-abec-e49daed01351\"}");
+                    ws.send("{\"op\":\"UNSUBSCRIBE\",\"arg\":[\"TRADE:XRP-KRW\"],\"id\":\"7abaf7b6-1871-ffcb-eaf2-59557f5bc1d0\"}");
+                    ws.send("{\"op\":\"SUBSCRIBE\",\"arg\":[\"TRADE:XRP-KRW\"],\"id\":\"8ebcb8f7-b770-3ad2-6313-156d7994a206\"}");
+                    // ws.send("");
+
+                }else{
+                    // document.getElementById('tickerlabel').value = event.data
+
+                    if (event.data.toString().indexOf("BTC-KRW") > 0){
+
+                        var aaa = event.data.toString().split(",")
+                        $("#tickerlabel").text(
+                            aaa[0] + " :: " + aaa[1] + "\n"
+                            +aaa[3] + " :: " + aaa[4]
+                        );
+                    }
+
+                }
+
+
+                console.log("received: " + event.data);
+            };
+
+            ws.onclose = function() {
+                console.log("External Socket closed");
+            };
+
+            ws.onopen = function() {
+                console.log("Connected to external ws");
+                ws.send("Hello from " + navigator.userAgent);
+            };
+        }
+
+        function addRow(tableid , data , position) {
+            var table = document.getElementById(tableid);
+            var rowlen = table.rows.length;        //테이블에 속한 행의 수를 구하는 것
+            var row = table.insertRow(rowlen-1);    // 테이블에 행을 추가하는 것입니다.
+
+            console.log("tableData ::::  " + data) ;
+
+            if((data + "").startsWith("http://") ){
+                row.insertCell(0).innerHTML = "<img width='300px' src=\""+data +"\">" ;
+                row.insertCell(0).innerHTML = "</BR><button type='button' class='btn btn-default navbar-btn' onclick='deleteItem()'>지우기</button>" ;
+            }else{
+                row.insertCell(0).innerHTML = data;
+            }
+        }
+
+        function deleteItem() {
+            sendRequestEventDelete(5)
+        }
     </script>
-
-
 
 </head>
 <body>
 
-
+    <script>f()</script>
 <!--    <header>이벤트 추가</header>-->
     <nav>
         <ul class="nav-container">
@@ -163,47 +331,56 @@
 
 
     <h1>이벤트 등록</h1>
-    <form>
-        <p>
-            <strong >이벤트-타이틀</strong>
-            <input id="eventTitle" type="text" name="name" placeholder="타이틀">
-        </p>
-        <p>
-            <strong>이벤트-내용</strong>
-            <input id="eventMessage" type="text" name="name" placeholder="이벤트내용">
-        </p>
-        <p>
-            <strong>이미지 내용(이미지 안에 추가될)</strong>
-            <input id="eventContent" type="text" name="name" placeholder="이미지내용">
-        </p>
-        <p>
-            <strong>이미지 주소(URL)</strong>
-            <input id="eventImgUrl" type="text" name="name" placeholder="이미지 주소">
-        </p>
-        <p>
-            <strong>시작 시간</strong>
-<!--            <input id="eventStartTime" type="text" name="name" placeholder="시작 시간" >-->
-            <input id="eventStartTime" type="date">
+    <span id="test" style="CURSOR : hand" onclick="if (plain.style.display === 'none') {
+        plain.style.display=''; test.innerText='닫기'} else {plain.style.display = 'none';} test.innerText='열기'">열기</span>
+    <div id="plain" style="display: none">
+        <form>
+            <p>
+                <strong >이벤트-타이틀</strong>
+                <input id="eventTitle" type="text" name="name" placeholder="타이틀">
+            </p>
+            <p>
+                <strong>이벤트-내용</strong>
+                <input id="eventMessage" type="text" name="name" placeholder="이벤트내용">
+            </p>
+            <p>
+                <strong>이미지 내용(이미지 안에 추가될)</strong>
+                <input id="eventContent" type="text" name="name" placeholder="이미지내용">
+            </p>
+            <p>
+                <strong>이미지 주소(URL)</strong>
+                <input id="eventImgUrl" type="text" name="name" placeholder="이미지 주소">
+            </p>
+            <p>
+                <strong>시작 시간</strong>
+    <!--            <input id="eventStartTime" type="text" name="name" placeholder="시작 시간" >-->
+                <input id="eventStartTime" type="datetime-local">
 
-        </p>
-        <p>
-            <strong>종료 시간</strong>
-            <input id="eventEndTime" type="date">
-<!--            <input id="eventEndTime" type="text" name="name" placeholder="종료 시간">-->
+            </p>
+            <p>
+                <strong>종료 시간</strong>
+                <input id="eventEndTime" type="datetime-local">
+    <!--            <input id="eventEndTime" type="text" name="name" placeholder="종료 시간">-->
 
-        </p>
-        <p>
-            <input type="button" value="제출"
-                   onclick="checkItem(
-                       document.getElementById(eventTitle) ,
-                       document.getElementById(eventMessage) ,
-                       document.getElementById(eventContent) ,
-                       document.getElementById(eventImgUrl) ,
-                       document.getElementById(eventStartTime) ,
-                       document.getElementById(eventEndTime) ,
-                   )"
-            >
-        </p>
-    </form>
+            </p>
+            <p>
+                <input type="button" value="제출"
+                       onclick="checkItem()"
+                >
+            </p>
+        </form>
+    </div>
+
+    </br>
+    </br>
+    <button onclick="wssConnect()">wss connect</button>
+
+    </br>
+    </br>
+    <LABEL id="tickerlabel">ticker</LABEL>
+    </br>
+    </br>
+    </br>
+    <TABLE id="addrow"></TABLE>
 </body>
 </html>

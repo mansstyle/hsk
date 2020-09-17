@@ -22,4 +22,11 @@ public interface InsertMapper {
     void insertEvent(eventModel eventModel) ;
     /* 이벤트 등록 */
     void insertTbScore(tbScoreModel tbScoreModel) ;
+
+    void insertTbCodiList(tbCodiModel tbCodiModel) ;
+
+    void insertTbMDPickList(tbMDPickModel tbMDPickModel) ;
+
+    void deleteEvent(eventDeleteModel eventDeleteModel) ;
+
 }

@@ -32,5 +32,16 @@ public class WebController {
 		return "login";
 	}
 
+	@RequestMapping(path = "/addCodiItem" , method = RequestMethod.GET)
+	public String addCodiItem(){
+		return "addCodiItem";
+	}
+
+	@RequestMapping(path = "/addMDPickItem" , method = RequestMethod.GET)
+	public String addMDPickItem(){
+		return "addMDPickItem";
+	}
+
+
 
 }

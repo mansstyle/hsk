@@ -26,5 +26,12 @@ public class PostService {
 
 	public void insertTbScore (tbScoreModel tbScoreModel){insertMapper.insertTbScore(tbScoreModel);}
 
+	public void insertTbCodiList (tbCodiModel tbCodiModel){insertMapper.insertTbCodiList(tbCodiModel);}
+
+	public void insertTbMDPickList (tbMDPickModel tbMDPickModel){insertMapper.insertTbMDPickList(tbMDPickModel);}
+
+	public void deleteEvent (eventDeleteModel eventDeleteModel){insertMapper.deleteEvent(eventDeleteModel);}
+
+
 
 }

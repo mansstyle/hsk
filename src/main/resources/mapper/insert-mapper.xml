@@ -175,4 +175,38 @@
 			#{shopClick}
 		)
 	</select>
+
+
+	<!-- 스토어 등록 -->
+	<select id="insertTbCodiList" parameterType="com.home.jjh.hsk.model.tbCodiModel">
+		insert into tbCodiListItem
+		value(
+			0,
+			#{codiMessage} ,
+			#{codiImgUrl} ,
+			NOW() + INTERVAL 9 hour ,
+			#{codiItemId} ,
+			#{codiTitle}
+		);
+	</select>
+
+	<!-- 스토어 등록 -->
+	<select id="insertTbMDPickList" parameterType="com.home.jjh.hsk.model.tbMDPickModel">
+		insert into tbMDListItem
+		value(
+			0,
+			#{mdMessage} ,
+			#{mdImgUrl} ,
+			NOW() + INTERVAL 9 hour ,
+			#{mdItemId} ,
+			#{mdTitle}
+		);
+	</select>
+
+
+	<select id="deleteEvent" resultType="com.home.jjh.hsk.model.eventDeleteModel">
+		delete event
+		FROM event
+		where eventId = #{eventId} ;
+	</select>
 </mapper>
