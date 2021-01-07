@@ -16,7 +16,7 @@ script:
  - mvn install
  
 before_deploy:
- - zip -r mansstyle-webservice *
+ - zip -r mansstyle-webservice/target/ *
  - mkdir -p deploy
  - mv mansstyle-webservice.zip deploy/mansstyle-webservice.zip
  
