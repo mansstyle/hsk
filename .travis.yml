@@ -13,10 +13,10 @@ cache:
 install: mvn clean install -P-quality-checks -DskipTests
 
 script:
- - mvn install
+ - mvn clean package -P real
  
 before_deploy:
- - zip -r mansstyle-webservice/target/ *
+ - zip -r mansstyle-webservice *
  - mkdir -p deploy
  - mv mansstyle-webservice.zip deploy/mansstyle-webservice.zip
  
