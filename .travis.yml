@@ -15,9 +15,8 @@ install: mvn clean install -P-quality-checks -DskipTests
 script:
  - mvn clean package -P real
  
-before_deploy:
- 
- - zip -r mansstyle-webservice *
+before_deploy: 
+ - zip -r mansstyle-webservice.zip target -x target/ROOT/**\* target/ROOT.war.original
  - mkdir -p deploy
  - mv mansstyle-webservice.zip deploy/mansstyle-webservice.zip
  
