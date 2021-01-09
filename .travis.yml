@@ -1,0 +1,43 @@
+language: java
+jdk:
+  - openjdk8
+
+branches:
+  only:
+    - master
+
+cache:
+  directories:
+    - $HOME/.m2/repository
+
+install: mvn clean install -P-quality-checks -DskipTests
+
+script:
+ - mvn clean package -P real
+ 
+before_deploy: 
+ - zip -r -q mansstyle-webservice.zip * -x target/ROOT/**\* target/ROOT.war.original target/classes/**\* target/surefire-reports/**\*
+ - mkdir -p deploy
+ - mv mansstyle-webservice.zip deploy/mansstyle-webservice.zip
+ 
+deploy:
+ - provider: s3
+   access_key_id: $AWS_ACCESS_KEY
+   secret_access_key: $AWS_SECRET_KEY
+   bucket: mansstyle-build-s3
+   region: ap-northeast-2
+   skip_cleanup: true
+   acl: private
+   local_dir: deploy
+   wait-until-deployed: true
+ 
+ - provider: codedeploy
+   access_key_id: $AWS_ACCESS_KEY
+   secret_access_key: $AWS_SECRET_KEY
+   bucket: mansstyle-build-s3
+   key: mansstyle-webservice.zip
+   bundle_type: zip
+   application: mansstyle-webservice
+   deployment_group: mansstyle-webservice-group
+   region: ap-northeast-2
+   wait-until-deployed: true
