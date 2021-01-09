@@ -110,7 +110,7 @@
             // 간단한 HTTP-GET Request
             // const http_req = new XMLHttpRequest()
             //
-            // http_req.open("GET", "http://192.168.0.19:8080/getapiad")
+            // http_req.open("GET", "http://192.168.0.19/getapiad")
             // http_req.getResponseHeader("Access-Control-Allow-Origin: *")
             // http_req.send()
             //
@@ -156,7 +156,7 @@
                 }
             };
 
-            xhr.open('POST', 'http://15.165.238.146:8080/insertEvent');
+            xhr.open('POST', 'http://15.165.238.146/insertEvent');
             xhr.setRequestHeader('Content-Type', 'application/json'); // 컨텐츠타입을 json으로
             xhr.send(JSON.stringify(data)); // 데이터를 stringify해서 보냄
 
@@ -174,10 +174,10 @@
 <!--    <header>이벤트 추가</header>-->
 <nav>
     <ul class="nav-container">
-        <li style="width: 25%" class="nav-item"> <a href="http://15.165.238.146:8080/"> home </a> </li>
-        <li class="nav-item"> <a href="http://15.165.238.146:8080/event">이벤트등록</a> </li>
+        <li style="width: 25%" class="nav-item"> <a href="http://15.165.238.146/"> home </a> </li>
+        <li class="nav-item"> <a href="http://15.165.238.146/event">이벤트등록</a> </li>
         <li class="nav-item"> <a href="">스토어등록</a> </li>
-        <li class="nav-item"> <a href="http://15.165.238.146:8080/eventlist">탭3</a> </li>
+        <li class="nav-item"> <a href="http://15.165.238.146/eventlist">탭3</a> </li>
         <li class="nav-item"> <a href="">탭4</a> </li>
     </ul>
 </nav>

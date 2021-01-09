@@ -5,6 +5,5 @@ function checkLoginSession() {
     }else{
         alert("2")
         // sessionStorage.setItem("myLoginData" , "userdata")
-
     }
 }
