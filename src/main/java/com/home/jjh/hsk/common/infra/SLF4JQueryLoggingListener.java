@@ -140,24 +140,24 @@ public class SLF4JQueryLoggingListener implements QueryExecutionListener {
 	}
 
 	private void writeLog(Object[] argArray) {
-		switch (logLevel) {
-		case DEBUG:
-			log.debug(logTemplate, argArray);
-			break;
-		case ERROR:
-			log.error(logTemplate, argArray);
-			break;
-		case INFO:
-			log.info(logTemplate, argArray);
-			break;
-		case TRACE:
-			log.trace(logTemplate, argArray);
-			break;
-		case WARN:
-			log.warn(logTemplate, argArray);
-			break;
-		default:
-		}
+//		switch (logLevel) {
+//		case DEBUG:
+//			Log.debug(logTemplate, argArray);
+//			break;
+//		case ERROR:
+//			Log.error(logTemplate, argArray);
+//			break;
+//		case INFO:
+//			Log.info(logTemplate, argArray);
+//			break;
+//		case TRACE:
+//			Log.trace(logTemplate, argArray);
+//			break;
+//		case WARN:
+//			Log.warn(logTemplate, argArray);
+//			break;
+//		default:
+//		}
 	}
 
 	

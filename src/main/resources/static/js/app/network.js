@@ -33,7 +33,7 @@ function sendLoginRequest(id , passwd) {
         }
     };
 
-    xhr.open('GET', 'http://localhost:8080/getapiuser?email=' + id);
+    xhr.open('GET', 'http://15.165.238.146:8080/getapiuser?email=' + id);
     xhr.setRequestHeader('Content-Type', 'application/json'); // 컨텐츠타입을 json으로
     xhr.send(); // 데이터를 stringify해서 보냄
     // xhr.send(JSON.stringify()); // 데이터를 stringify해서 보냄
