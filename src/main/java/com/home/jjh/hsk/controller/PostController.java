@@ -7,7 +7,6 @@ import com.home.jjh.hsk.model.*;
 import com.home.jjh.hsk.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,20 +21,17 @@ public class PostController {
 	@Autowired
 	private PostService postService;
 
-	@CrossOrigin("*")
 	@PostMapping("/setApiUser")
 	public List<userModel> setApiUser(@RequestBody userModel userModel) {
 
 		return postService.setApiUser(userModel);
 	}
 
-	@CrossOrigin("*")
 	@PostMapping("/setApiMainBanneItem")
 	public void setApiMainBannerItem(@RequestBody mainBannerItem mainBannerItem) {
 		postService.setApiMainBannerItem(mainBannerItem) ;
 	}
 
-	@CrossOrigin("*")
 	@PostMapping("/insertShop")
 	public String inserShop(@RequestBody shopsModel shopsModel) {
 
@@ -60,47 +56,24 @@ public class PostController {
 		return obj.toString() ;
 	}
 
-	@CrossOrigin("*")
 	@PostMapping("/insertNewItem")
 	public void insertNewItem(@RequestBody itemModel itemModel) {
 		postService.insertNewItem(itemModel);
 	}
 
-	@CrossOrigin("*")
 	@PostMapping("/insertItemDetail")
 	public void insertNewDetailItem(@RequestBody itemDetailModel itemDetailModel) {
 		postService.insertItemDetail(itemDetailModel);
 	}
 
-	@CrossOrigin("*")
 	@PostMapping("/insertEvent")
 	public void insertEventItem(@RequestBody eventModel eventModel){
 		postService.insertEvent(eventModel) ;
 	}
 
-	@CrossOrigin("*")
 	@PostMapping("/insertTbScore")
 	public void insertTbScore(@RequestBody tbScoreModel tbScoreModel){
 		postService.insertTbScore(tbScoreModel) ;
-	}
-
-	@CrossOrigin("*")
-	@PostMapping("/insertTbCodiList")
-	public void insertTbCodi(@RequestBody tbCodiModel tbScoreModel){
-		postService.insertTbCodiList(tbScoreModel) ;
-	}
-
-	@CrossOrigin("*")
-	@PostMapping("/insertTbMDPickList")
-	public void insertTbMDPick(@RequestBody tbMDPickModel tbMDPickModel){
-		postService.insertTbMDPickList(tbMDPickModel) ;
-	}
-
-
-	@CrossOrigin("*")
-	@PostMapping("/deleteEvent")
-	public void deleteEvent(@RequestBody eventDeleteModel eventDeleteModel){
-		postService.deleteEvent(eventDeleteModel) ;
 	}
 
 }

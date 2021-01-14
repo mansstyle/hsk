@@ -30,7 +30,7 @@ public class SLF4JQueryLoggingListener implements QueryExecutionListener {
 	/**
 	 * ? 를 찾는 pattern
 	 */
-	private static final Pattern questionPattern = Pattern.compile("\\?{1}");
+	private static Pattern questionPattern = Pattern.compile("\\?{1}");
 
 	@Override
 	public void beforeQuery(ExecutionInfo executioninfo, List<QueryInfo> list) {
@@ -139,25 +139,25 @@ public class SLF4JQueryLoggingListener implements QueryExecutionListener {
 		}
 	}
 
-	private void writeLog(Object[] argArray) {
-//		switch (logLevel) {
-//		case DEBUG:
-//			Log.debug(logTemplate, argArray);
-//			break;
-//		case ERROR:
-//			Log.error(logTemplate, argArray);
-//			break;
-//		case INFO:
-//			Log.info(logTemplate, argArray);
-//			break;
-//		case TRACE:
-//			Log.trace(logTemplate, argArray);
-//			break;
-//		case WARN:
-//			Log.warn(logTemplate, argArray);
-//			break;
-//		default:
-//		}
+	private void writeLog(Object argArray[]) {
+		switch (logLevel) {
+		case DEBUG:
+			log.debug(logTemplate, argArray);
+			break;
+		case ERROR:
+			log.error(logTemplate, argArray);
+			break;
+		case INFO:
+			log.info(logTemplate, argArray);
+			break;
+		case TRACE:
+			log.trace(logTemplate, argArray);
+			break;
+		case WARN:
+			log.warn(logTemplate, argArray);
+			break;
+		default:
+		}
 	}
 
 	
@@ -167,7 +167,11 @@ public class SLF4JQueryLoggingListener implements QueryExecutionListener {
 	 * @return
 	 */
 	private boolean isExcluedSqlLogging(String query) {
-		return useExcludeSqlLogging && query.contains("EXCLUDE_SQL_LOGGING");
+		if(useExcludeSqlLogging && query.contains("EXCLUDE_SQL_LOGGING")){
+			return true;
+		} else {
+			return false;
+		}		
 	}
 
 	public SLF4JLogLevel getLogLevel() {

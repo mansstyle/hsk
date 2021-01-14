@@ -16,20 +16,37 @@
         WHERE email = #{email}
 	</select>
 
+    <!--  IntroData	-->
     <select id="getApiIntro" resultType="com.home.jjh.hsk.model.introModel">
-		SELECT adId,
-			dataAd,
-			emgContent,
-			emgTitle,
-			lastAos,
-			lastIos,
-			upMsgAos,
-			upMsgIos,
+		Select
+			adintro.adId ,
+			dataAd ,
+			emgContent ,
+			emgTitle ,
+			lastAos ,
+			lastIos ,
+			upMsgAos ,
+			upMsgIos ,
+			verAos ,
+			verIos ,
+			a.adId ,
+			cnt ,
+			startDate ,
+			endDate ,
+			cntMax ,
+			a2.adId ,
+			adDetailUrl ,
+			adMsg ,
+			adNo ,
+			adStoreName ,
+			adUrl ,
 			upTitleAos,
-			upTitleIos,
-			verAos,
-			verIos
-		FROM `adintro`
+			upTitleIos
+		From adintro
+			left JOIN ad a
+				on adintro.adId = adintro.adId
+			left JOIN addata a2
+				on a.adId = a.adId;
 	</select>
 
     <select id="getApiAd" resultType="com.home.jjh.hsk.model.adModel">
@@ -41,7 +58,7 @@
 		FROM `ad`
 	</select>
 
-	<select id="getApiAdDataItem" resultType="com.home.jjh.hsk.model.adDataModel">
+    <select id="getApiAdDataItem" resultType="com.home.jjh.hsk.model.adDataModel">
 		SELECT adId,
 			adDetailUrl,
 			adMsg,
@@ -62,10 +79,9 @@
 			imgUrlMain,
 			startDate
 		FROM `event`
-		order by eventId DESC ;
 	</select>
 
-	<select id="getApiItem" resultType="com.home.jjh.hsk.model.itemModel">
+    <select id="getApiItem" resultType="com.home.jjh.hsk.model.itemModel">
 		SELECT
 			shopId,
 			shopItemDetailUrl,
@@ -78,7 +94,7 @@
 		FROM `item`
 	</select>
 
-	<select id="getApiShopsDataItem" resultType="com.home.jjh.hsk.model.shopsModel">
+    <select id="getApiShopsDataItem" resultType="com.home.jjh.hsk.model.shopsModel">
 		SELECT shopId ,
 			addInfoAsPhone ,
 			addInfoCeo ,
@@ -103,7 +119,7 @@
 	</select>
 
 
-	<select id="getApiTestJoin" resultType="com.home.jjh.hsk.model.testJoinModel">
+    <select id="getApiTestJoin" resultType="com.home.jjh.hsk.model.testJoinModel">
 		select newitem.itemId ,
        		newitem.shopTitle ,
        		shopItemDetailUrl
@@ -112,20 +128,29 @@
 	</select>
 
 
-	<select id="getApiMainBanner" resultType="com.home.jjh.hsk.model.mainBannerItem">
-		SELECT
-    		adId ,
-    		bannerId ,
-    		imgUrl ,
-    		itemClickUrl
-		FROM `mainbanneritem`
+    <select id="getApiMainBanner" resultType="com.home.jjh.hsk.model.mainBannerItem">
+		select
+       		adStoreName , adNo , adMsg , imgUrl , adDetailUrl , itemClickUrl , bannerType
+		from mainbanneritem
+			left join addata a on mainbanneritem.adId = a.adId;
 	</select>
 
-
-<!--	<select id="getApiMainBanner" resultType="com.home.jjh.hsk.model.mainBannerItem">-->
-<!--		delete event FROM event where eventId = #{eventId} ;-->
-<!--	</select>-->
-
-
+	<select id="getApiNewItem" resultType="com.home.jjh.hsk.model.newItemModel">
+		select
+		   newitem.uid
+		   shopItemPriceSale ,
+		   newitem.shopTitle ,
+		   updateTime ,
+		   shopItemUrl ,
+		   shopItemName ,
+		   shopItemDetailUrl ,
+		   shopItemPriceOriginal ,
+		   itemCategori ,
+		   itemDetailUrl
+		from newitem
+		left join item s on newitem.itemId = s.itemId
+		order by newitem.uid desc
+		limit  #{position} , 16;
+	</select>
 
 </mapper>

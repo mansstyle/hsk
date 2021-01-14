@@ -8,6 +8,7 @@ import com.home.jjh.hsk.service.GetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,12 +17,8 @@ public class GetController {
 	@Autowired
 	private GetService getService;
 
-	@CrossOrigin("*")
 	@GetMapping("/getapiuser")
 	public String getApiUser(@RequestParam("email") String email){
-
-		System.out.println("inininin");
-
 		userModel userModelData = getService.getApiUser(email);
 		JsonObject obj = new JsonObject();
 		obj.addProperty("errCd" , 0);
@@ -52,7 +49,6 @@ public class GetController {
 		return obj.toString();
 	}
 
-	@CrossOrigin("*")
 	@GetMapping("/getapiad")
 	public String getApiAd(){
 		List<adModel> data = getService.getApiAd();
@@ -66,23 +62,57 @@ public class GetController {
 		return obj.toString();
 	}
 
-	@CrossOrigin("*")
 	@GetMapping("/getapiintro")
 	public String getApiIntro(){
 		List<introModel> data = getService.getApiIntro();
+		//
 		JsonObject obj = new JsonObject();
 		obj.addProperty("errCd" , 0);
 		obj.addProperty("errMsg" , "");
+		//
+		JsonObject resultObj = new JsonObject();
+		resultObj.addProperty("emgContent" , data.get(0).getEmgContent());
+		resultObj.addProperty("emgTitle" ,  data.get(0).getEmgTitle());
+		resultObj.addProperty("lastAos" , data.get(0).getLastAos());
+		resultObj.addProperty("lastIos" , data.get(0).getLastIos());
+		resultObj.addProperty("upMsgAos" , data.get(0).getUpMsgAos());
+		resultObj.addProperty("upMsgIos" , data.get(0).getUpMsgIos());
+		resultObj.addProperty("upTitleAos" , data.get(0).getUpTitleAos());
+		resultObj.addProperty("upTitleIos" , data.get(0).getUpTitleIos());
+		resultObj.addProperty("verAos" , data.get(0).getVerAos());
+		resultObj.addProperty("verIos" , data.get(0).getVerIos());
+
+
 		Gson gson = new Gson();
-		String jsonData = gson.toJson(data) ;
-		JsonElement element = gson.fromJson(jsonData, JsonElement.class);
+//		String jsonData = gson.toJson(data) ;
+
+		ArrayList<JsonObject> listItemObj = new ArrayList<>() ;
+
+		//
+		for (int i = 0; i < data.size(); i++) {
+			JsonObject item = new JsonObject();
+			item.addProperty("adUrl",data.get(i).getAdUrl());
+			item.addProperty("adDetailUrl",data.get(i).getAdDetailUrl());
+			item.addProperty("adMsg",data.get(i).getAdMsg());
+			item.addProperty("adStoreName",data.get(i).getAdStoreName());
+			item.addProperty("adStartDate",data.get(i).getStartDate());
+			item.addProperty("adEndDate",data.get(i).getEndDate());
+
+			listItemObj.add(item);
+		}
+		//
+		String jsonData = gson.toJson(listItemObj) ;
+		JsonElement element11 = gson.fromJson(jsonData, JsonElement.class);
+		resultObj.add("adData" , element11);
+
+		JsonElement element = gson.fromJson(resultObj, JsonElement.class);
 		obj.add("result" , element);
+
 
 		return obj.toString();
 	}
 
 
-	@CrossOrigin("*")
 	@GetMapping("/getapievent")
 	public String getApiEvent(){
 		List<eventModel> data = getService.getApiEvent();
@@ -97,7 +127,6 @@ public class GetController {
 		return obj.toString();
 	}
 
-	@CrossOrigin("*")
 	@GetMapping("/getapiitem") //추후 스토어 이름 .. 등등으로 검색 가능하도록 추가.
 	public String getApiItem(){
 		List<itemModel> data = getService.getApiItem();
@@ -112,7 +141,6 @@ public class GetController {
 		return obj.toString();
 	}
 
-	@CrossOrigin("*")
 	@GetMapping("/getapiaddata")
 	public String getApiAdDataItem(){
 		List<adDataModel> data = getService.getApiAdDataItem();
@@ -127,7 +155,6 @@ public class GetController {
 		return obj.toString();
 	}
 
-	@CrossOrigin("*")
 	@RequestMapping(method = RequestMethod.GET, path = "/getapishopdata")
 	public String getApiShopsItem(){
 		List<shopsModel> data = getService.getApiShopsDataItem();
@@ -142,10 +169,52 @@ public class GetController {
 		return obj.toString();
 	}
 
-	@CrossOrigin("*")
+
 	@RequestMapping(method = RequestMethod.GET, path = "/getApiMainBanner")
 	public String getApiMainBanner(){
-		List<shopsModel> data = getService.getApiMainBanner();
+		List<mainBannerItem> data = getService.getApiMainBanner();
+		JsonObject obj = new JsonObject();
+		obj.addProperty("errCd" , 0);
+		obj.addProperty("errMsg" , "");
+
+		JsonObject resultObj = new JsonObject();
+
+		Gson gson = new Gson();
+//		String jsonData = gson.toJson(data) ;
+//		JsonElement element = gson.fromJson(jsonData, JsonElement.class);
+//
+		ArrayList<JsonObject> listItemObj = new ArrayList<>() ;
+
+		for (int i = 0; i < data.size(); i++) {
+			JsonObject item = new JsonObject();
+			item.addProperty("adStoreName",data.get(i).getAdStoreName());
+			item.addProperty("adNo",data.get(i).getAdNo());
+			item.addProperty("adMsg",data.get(i).getAdMsg());
+			item.addProperty("imgUrl",data.get(i).getImgUrl());
+			item.addProperty("adDetailUrl",data.get(i).getAdDetailUrl());
+			item.addProperty("getItemClickUrl",data.get(i).getItemClickUrl());
+			item.addProperty("bannerType",data.get(i).getBannerType());
+
+			listItemObj.add(item);
+		}
+		//
+		String jsonData = gson.toJson(listItemObj) ;
+		JsonElement element11 = gson.fromJson(jsonData, JsonElement.class);
+		resultObj.add("adMainItemData" , element11);
+
+
+		JsonElement element = gson.fromJson(resultObj, JsonElement.class);
+		obj.add("result" , element);
+
+
+		return obj.toString();
+	}
+
+
+	@RequestMapping(method = RequestMethod.GET, path = "/getApiTestJoin")
+	public String getApiTestJoin(){
+
+		testJoinModel data = getService.getApiTestJoin();
 		JsonObject obj = new JsonObject();
 		obj.addProperty("errCd" , 0);
 		obj.addProperty("errMsg" , "");
@@ -157,11 +226,12 @@ public class GetController {
 		return obj.toString();
 	}
 
-	@CrossOrigin("*")
-	@RequestMapping(method = RequestMethod.GET, path = "/getApiTestJoin")
-	public String getApiTestJoin(){
 
-		testJoinModel data = getService.getApiTestJoin();
+	@RequestMapping(method = RequestMethod.GET, path = "/getApiNewItem" )
+	public String getApiNewItem(@RequestParam("position") int page ){ //, @RequestParam("limitcount") String limitcount = 16
+
+		List<newItemModel> data = getService.getApiNewItem(page);
+
 		JsonObject obj = new JsonObject();
 		obj.addProperty("errCd" , 0);
 		obj.addProperty("errMsg" , "");

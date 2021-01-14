@@ -32,5 +32,7 @@ public class shopsModel{
     private String shopHomepage ;
     private String shopMainImg ;
     private String shopName ;
-
+    private String shopLiike ;
+    private String shopShare ;
+    private String shopClick ;
 }

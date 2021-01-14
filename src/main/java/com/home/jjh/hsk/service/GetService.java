@@ -34,10 +34,16 @@ public class GetService {
 	public List<shopsModel> getApiShopsDataItem(){
 		return selectMapper.getApiShopsDataItem();
 	}
-	public List<shopsModel> getApiMainBanner(){ return selectMapper.getApiMainBanner();}
+	public List<mainBannerItem> getApiMainBanner(){ return selectMapper.getApiMainBanner();}
 	public testJoinModel getApiTestJoin(){
 		return selectMapper.getApiTestJoin();
 	}
+
+	public List<newItemModel> getApiNewItem(@RequestParam("position") int page ){
+		return selectMapper.getApiNewItem(page);
+	}
+
+
 
 
 }
