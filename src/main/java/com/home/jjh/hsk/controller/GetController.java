@@ -170,7 +170,7 @@ public class GetController {
 	}
 
 
-	@RequestMapping(method = RequestMethod.GET, path = "/getApiMainBanner")
+	@RequestMapping(method = RequestMethod.GET, path = "/getapimainbanner")
 	public String getApiMainBanner(){
 		List<mainBannerItem> data = getService.getApiMainBanner();
 		JsonObject obj = new JsonObject();
@@ -186,16 +186,18 @@ public class GetController {
 		ArrayList<JsonObject> listItemObj = new ArrayList<>() ;
 
 		for (int i = 0; i < data.size(); i++) {
-			JsonObject item = new JsonObject();
-			item.addProperty("adStoreName",data.get(i).getAdStoreName());
-			item.addProperty("adNo",data.get(i).getAdNo());
-			item.addProperty("adMsg",data.get(i).getAdMsg());
-			item.addProperty("imgUrl",data.get(i).getImgUrl());
-			item.addProperty("adDetailUrl",data.get(i).getAdDetailUrl());
-			item.addProperty("getItemClickUrl",data.get(i).getItemClickUrl());
-			item.addProperty("bannerType",data.get(i).getBannerType());
+			if (data.get(i) != null){
+				JsonObject item = new JsonObject();
+				item.addProperty("adStoreName",data.get(i).getAdStoreName());
+				item.addProperty("adNo",data.get(i).getAdNo());
+				item.addProperty("adMsg",data.get(i).getAdMsg());
+				item.addProperty("imgUrl",data.get(i).getImgUrl());
+				item.addProperty("adDetailUrl",data.get(i).getAdDetailUrl());
+				item.addProperty("getItemClickUrl",data.get(i).getItemClickUrl());
+				item.addProperty("bannerType",data.get(i).getBannerType());
 
-			listItemObj.add(item);
+				listItemObj.add(item);
+			}
 		}
 		//
 		String jsonData = gson.toJson(listItemObj) ;
@@ -227,7 +229,7 @@ public class GetController {
 	}
 
 
-	@RequestMapping(method = RequestMethod.GET, path = "/getApiNewItem" )
+	@RequestMapping(method = RequestMethod.GET, path = "/getapinewitem" )
 	public String getApiNewItem(@RequestParam("position") int page ){ //, @RequestParam("limitcount") String limitcount = 16
 
 		List<newItemModel> data = getService.getApiNewItem(page);
