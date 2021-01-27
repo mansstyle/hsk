@@ -25,6 +25,7 @@ public class PostService {
 	public void insertEvent (eventModel eventModel){insertMapper.insertEvent(eventModel);}
 
 	public void insertTbScore (tbScoreModel tbScoreModel){insertMapper.insertTbScore(tbScoreModel);}
+	public void insertTbCounter (updateCountModel updateCountModel){insertMapper.insertTbCounter(updateCountModel);}
 
 	public void insertTbCodiList (tbCodiModel tbCodiModel){insertMapper.insertTbCodiList(tbCodiModel);}
 

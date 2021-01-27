@@ -4,7 +4,6 @@ import com.home.jjh.hsk.model.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-import java.util.Map;
 
 @Mapper
 public interface InsertMapper {
@@ -22,6 +21,9 @@ public interface InsertMapper {
     void insertEvent(eventModel eventModel) ;
     /* 아이템 클릭 */
     void insertTbScore(tbScoreModel tbScoreModel) ;
+
+    /* 아이템 클릭 */
+    void insertTbCounter(updateCountModel updateCountModel) ;
 
     void insertTbCodiList(tbCodiModel tbCodiModel) ;
 

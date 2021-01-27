@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class updateCountMode {
+public class updateCountModel {
 
     private String type;
     private int count;

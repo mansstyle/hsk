@@ -211,7 +211,7 @@
 	</select>
 
 	<!--  counter add banner ad item	uid 는 type + id -->
-	<select id="insertTbCount" resultType="com.home.jjh.hsk.model.updateCountMode">
+	<select id="insertTbCount" resultType="com.home.jjh.hsk.model.updateCountModel">
 		INSERT INTO tbCount (type, count, uid , id )
 		VALUES(
 		#{mType} ,
