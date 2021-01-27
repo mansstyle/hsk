@@ -20,7 +20,7 @@ public interface InsertMapper {
     void insertItemDetail(itemDetailModel itemDetailModel) ;
     /* 이벤트 등록 */
     void insertEvent(eventModel eventModel) ;
-    /* 이벤트 등록 */
+    /* 아이템 클릭 */
     void insertTbScore(tbScoreModel tbScoreModel) ;
 
     void insertTbCodiList(tbCodiModel tbCodiModel) ;

@@ -182,7 +182,7 @@ public class GetController {
 		Gson gson = new Gson();
 //		String jsonData = gson.toJson(data) ;
 //		JsonElement element = gson.fromJson(jsonData, JsonElement.class);
-//
+		
 		ArrayList<JsonObject> listItemObj = new ArrayList<>() ;
 
 		for (int i = 0; i < data.size(); i++) {

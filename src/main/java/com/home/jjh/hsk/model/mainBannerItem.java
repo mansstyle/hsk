@@ -18,3 +18,12 @@ public class mainBannerItem {
     private String itemClickUrl;
     private String bannerType;
 }
+
+
+
+
+
+
+
+
+

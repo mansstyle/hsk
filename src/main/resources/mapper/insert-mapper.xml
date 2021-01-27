@@ -209,4 +209,19 @@
 		FROM event
 		where eventId = #{eventId} ;
 	</select>
+
+	<!--  counter add banner ad item	uid 는 type + id -->
+	<select id="insertTbCount" resultType="com.home.jjh.hsk.model.updateCountMode">
+		INSERT INTO tbCount (type, count, uid , id )
+		VALUES(
+		#{mType} ,
+		#{mCount} ,
+	  	#{mUid} ,
+	 	#{mId}
+		)
+		ON DUPLICATE KEY UPDATE
+		count = count + 1;
+	</select>
+
+
 </mapper>
