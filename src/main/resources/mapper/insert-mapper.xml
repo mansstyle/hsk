@@ -176,6 +176,18 @@
 		)
 	</select>
 
+	<!--  counter add banner ad item	uid 는 type + id -->
+	<select id="insertTbCounter" resultType="com.home.jjh.hsk.model.updateCountModel">
+		INSERT INTO tbCount (type, count, uid , id )
+		VALUES(
+		#{type} ,
+		#{count} ,
+	  	#{uid} ,
+	 	#{id}
+		)
+		ON DUPLICATE KEY UPDATE
+		count = count + 1;
+	</select>
 
 	<!-- 스토어 등록 -->
 	<select id="insertTbCodiList" parameterType="com.home.jjh.hsk.model.tbCodiModel">
@@ -210,18 +222,7 @@
 		where eventId = #{eventId} ;
 	</select>
 
-	<!--  counter add banner ad item	uid 는 type + id -->
-	<select id="insertTbCount" resultType="com.home.jjh.hsk.model.updateCountModel">
-		INSERT INTO tbCount (type, count, uid , id )
-		VALUES(
-		#{mType} ,
-		#{mCount} ,
-	  	#{mUid} ,
-	 	#{mId}
-		)
-		ON DUPLICATE KEY UPDATE
-		count = count + 1;
-	</select>
+
 
 
 </mapper>

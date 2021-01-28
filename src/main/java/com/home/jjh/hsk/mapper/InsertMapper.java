@@ -22,7 +22,7 @@ public interface InsertMapper {
     /* 아이템 클릭 */
     void insertTbScore(tbScoreModel tbScoreModel) ;
 
-    /* 아이템 클릭 */
+    /* 아이템 클릭 counter */
     void insertTbCounter(updateCountModel updateCountModel) ;
 
     void insertTbCodiList(tbCodiModel tbCodiModel) ;

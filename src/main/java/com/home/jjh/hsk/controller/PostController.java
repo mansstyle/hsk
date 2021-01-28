@@ -76,6 +76,7 @@ public class PostController {
 		postService.insertTbScore(tbScoreModel) ;
 	}
 
+	//
 	@PostMapping("/insertTbCounter")
 	public void insertTbCounter(@RequestBody updateCountModel updateCountModel){
 		postService.insertTbCounter(updateCountModel) ;

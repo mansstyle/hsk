@@ -11,28 +11,50 @@ import java.util.Map;
 @Service
 public class PostService {
 
-	@Autowired
-	private InsertMapper insertMapper;
+    @Autowired
+    private InsertMapper insertMapper;
 
-	public List<userModel> setApiUser(userModel userModel){
-		return insertMapper.setApiUser(userModel);
-	}
+    public List<userModel> setApiUser(userModel userModel) {
+        return insertMapper.setApiUser(userModel);
+    }
 
-	public void setApiMainBannerItem(mainBannerItem mainBannerItem){insertMapper.setApiMainBannerItem(mainBannerItem);}
-	public void inserShop (shopsModel shopsModel){insertMapper.insertShop(shopsModel);}
-	public void insertNewItem (itemModel itemModel){insertMapper.insertNewItem(itemModel);}
-	public void insertItemDetail (itemDetailModel itemDetailModel){insertMapper.insertItemDetail(itemDetailModel);}
-	public void insertEvent (eventModel eventModel){insertMapper.insertEvent(eventModel);}
+    public void setApiMainBannerItem(mainBannerItem mainBannerItem) {
+        insertMapper.setApiMainBannerItem(mainBannerItem);
+    }
 
-	public void insertTbScore (tbScoreModel tbScoreModel){insertMapper.insertTbScore(tbScoreModel);}
-	public void insertTbCounter (updateCountModel updateCountModel){insertMapper.insertTbCounter(updateCountModel);}
+    public void inserShop(shopsModel shopsModel) {
+        insertMapper.insertShop(shopsModel);
+    }
 
-	public void insertTbCodiList (tbCodiModel tbCodiModel){insertMapper.insertTbCodiList(tbCodiModel);}
+    public void insertNewItem(itemModel itemModel) {
+        insertMapper.insertNewItem(itemModel);
+    }
 
-	public void insertTbMDPickList (tbMDPickModel tbMDPickModel){insertMapper.insertTbMDPickList(tbMDPickModel);}
+    public void insertItemDetail(itemDetailModel itemDetailModel) {
+        insertMapper.insertItemDetail(itemDetailModel);
+    }
 
-	public void deleteEvent (eventDeleteModel eventDeleteModel){insertMapper.deleteEvent(eventDeleteModel);}
+    public void insertEvent(eventModel eventModel) {
+        insertMapper.insertEvent(eventModel);
+    }
 
+    public void insertTbScore(tbScoreModel tbScoreModel) {
+        insertMapper.insertTbScore(tbScoreModel);
+    }
 
+    public void insertTbCounter(updateCountModel updateCountModel) {
+        insertMapper.insertTbCounter(updateCountModel);
+    }
 
+    public void insertTbCodiList(tbCodiModel tbCodiModel) {
+        insertMapper.insertTbCodiList(tbCodiModel);
+    }
+
+    public void insertTbMDPickList(tbMDPickModel tbMDPickModel) {
+        insertMapper.insertTbMDPickList(tbMDPickModel);
+    }
+
+    public void deleteEvent(eventDeleteModel eventDeleteModel) {
+        insertMapper.deleteEvent(eventDeleteModel);
+    }
 }
