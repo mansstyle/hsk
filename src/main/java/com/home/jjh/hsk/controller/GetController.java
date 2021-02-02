@@ -244,4 +244,36 @@ public class GetController {
 
 		return obj.toString();
 	}
+
+	@RequestMapping(method = RequestMethod.GET, path = "/getapicodiitem" )
+	public String getApiCodiItem(@RequestParam("position") int page ){
+
+		List<newItemModel> data = getService.getApiCodiItem(page);
+
+		JsonObject obj = new JsonObject();
+		obj.addProperty("errCd" , 0);
+		obj.addProperty("errMsg" , "");
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(data) ;
+		JsonElement element = gson.fromJson(jsonData, JsonElement.class);
+		obj.add("result" , element);
+
+		return obj.toString();
+	}
+
+	@RequestMapping(method = RequestMethod.GET, path = "/getapimditem" )
+	public String getApiMDItem(@RequestParam("position") int page ){
+
+		List<newItemModel> data = getService.getApiMDItem(page);
+
+		JsonObject obj = new JsonObject();
+		obj.addProperty("errCd" , 0);
+		obj.addProperty("errMsg" , "");
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(data) ;
+		JsonElement element = gson.fromJson(jsonData, JsonElement.class);
+		obj.add("result" , element);
+
+		return obj.toString();
+	}
 }

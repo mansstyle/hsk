@@ -31,7 +31,8 @@ public interface SelectMapper {
 
     List<newItemModel> getApiNewItem(@RequestParam("position") int page );
 
+    List<newItemModel> getApiCodiItem(@RequestParam("position") int page );
 
-
+    List<newItemModel> getApiMDItem(@RequestParam("position") int page );
 
 }

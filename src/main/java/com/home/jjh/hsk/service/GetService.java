@@ -27,7 +27,9 @@ public class GetService {
 	public List<eventModel> getApiEvent(){
 		return selectMapper.getApiEvent();
 	}
-	public List<itemModel> getApiItem(){return selectMapper.getApiItem();}
+	public List<itemModel> getApiItem(){
+		return selectMapper.getApiItem();
+	}
 	public List<adDataModel> getApiAdDataItem(){
 		return selectMapper.getApiAdDataItem();
 	}
@@ -43,7 +45,12 @@ public class GetService {
 		return selectMapper.getApiNewItem(page);
 	}
 
+	public List<newItemModel> getApiCodiItem(@RequestParam("position") int page ){
+		return selectMapper.getApiCodiItem(page);
+	}
 
-
+	public List<newItemModel> getApiMDItem(@RequestParam("position") int page ){
+		return selectMapper.getApiMDItem(page);
+	}
 
 }

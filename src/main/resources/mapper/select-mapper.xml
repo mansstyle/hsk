@@ -90,7 +90,9 @@
 			shopItemPriceSale,
 			shopItemUrl,
 			shopTitle,
-			itemId
+			itemId ,
+			itemCategori ,
+			itemDetailUrl
 		FROM `item`
 	</select>
 
@@ -135,9 +137,9 @@
 			left join addata a on mainbanneritem.adId = a.adId;
 	</select>
 
-	<select id="getApiNewItem" resultType="com.home.jjh.hsk.model.newItemModel">
+    <select id="getApiNewItem" resultType="com.home.jjh.hsk.model.newItemModel">
 		select
-		   newitem.uid
+		   newitem.uid ,
 		   shopItemPriceSale ,
 		   newitem.shopTitle ,
 		   updateTime ,
@@ -145,15 +147,76 @@
 		   shopItemName ,
 		   shopItemDetailUrl ,
 		   shopItemPriceOriginal ,
+		   shopItemPriceSale,
 		   itemCategori ,
-		   itemDetailUrl
+		   itemDetailUrl,
+           s.itemId ,
+           s.shopId
 		from newitem
 		left join item s on newitem.itemId = s.itemId
 		order by newitem.uid desc
 		limit  #{position} , 16;
 	</select>
 
+    <select id="getApiCodiItem" resultType="com.home.jjh.hsk.model.newItemModel">
+		select
+		   tbCodiListItem.uid ,
+		   shopItemPriceSale ,
+		   s.shopTitle ,
+		   updateTime ,
+		   shopItemUrl ,
+		   shopItemName ,
+		   shopItemDetailUrl ,
+		   shopItemPriceOriginal ,
+		   shopItemPriceSale,
+		   itemCategori ,
+		   itemDetailUrl ,
+           s.itemId ,
+           s.shopId
+		from tbCodiListItem
+		left join item s on tbCodiListItem.codiId = s.itemId
+		order by tbCodiListItem.uid desc
+		limit  #{position} , 16;
+	</select>
 
-<!-- counter select-->
+    <select id="getApiMDItem" resultType="com.home.jjh.hsk.model.newItemModel">
+		select
+		tbMDListItem.uid ,
+		shopItemPriceSale ,
+		s.shopTitle ,
+		updateTime ,
+		shopItemUrl ,
+		shopItemName ,
+		shopItemDetailUrl ,
+		shopItemPriceOriginal ,
+		itemCategori ,
+		itemDetailUrl ,
+		s.itemId ,
+		s.shopId
+		from tbMDListItem
+		left join item s on tbMDListItem.mdItemId = s.itemId
+		order by tbMDListItem.uid desc
+		limit  #{position} , 16;
+	</select>
+
+    <!--    select-->
+    <!--    tbMDListItem.uid ,-->
+    <!--    shopItemPriceSale ,-->
+    <!--    s.shopTitle ,-->
+    <!--    updateTime ,-->
+    <!--    shopItemUrl ,-->
+    <!--    shopItemName ,-->
+    <!--    shopItemDetailUrl ,-->
+    <!--    shopItemPriceOriginal ,-->
+    <!--    itemCategori ,-->
+    <!--    itemDetailUrl ,-->
+    <!--    s.itemId ,-->
+    <!--    s.shopId-->
+    <!--    from tbMDListItem-->
+    <!--    left join item s on tbMDListItem.mdItemId = s.itemId-->
+    <!--    order by tbMDListItem.uid desc-->
+    <!--    limit 0 , 16;-->
+    <!--    counter select-->
+
 
 </mapper>

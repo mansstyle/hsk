@@ -2,6 +2,7 @@ package com.home.jjh.hsk.mapper;
 
 import com.home.jjh.hsk.model.*;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public interface InsertMapper {
     void insertTbScore(tbScoreModel tbScoreModel) ;
 
     /* 아이템 클릭 counter */
-    void insertTbCounter(updateCountModel updateCountModel) ;
+    void insertTbCounter(@RequestParam("type")  String type , @RequestParam("count")  int count , @RequestParam("uid")  String uid , @RequestParam("id")  int id) ;
 
     void insertTbCodiList(tbCodiModel tbCodiModel) ;
 

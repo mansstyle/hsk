@@ -20,4 +20,7 @@ public class itemModel{
     private String shopItemUrl;
     private String shopTitle;
     private String itemId;
+    private String itemCategori;
+    private String itemDetailUrl;
+
 }

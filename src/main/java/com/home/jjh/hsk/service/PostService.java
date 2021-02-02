@@ -4,6 +4,7 @@ import com.home.jjh.hsk.mapper.InsertMapper;
 import com.home.jjh.hsk.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
@@ -42,8 +43,12 @@ public class PostService {
         insertMapper.insertTbScore(tbScoreModel);
     }
 
-    public void insertTbCounter(updateCountModel updateCountModel) {
-        insertMapper.insertTbCounter(updateCountModel);
+//    public void insertTbCounter(updateCountModel updateCountModel) {
+//        insertMapper.insertTbCounter(updateCountModel);
+//    }
+
+    public void insertTbCounter(@RequestParam("type")  String type , @RequestParam("count")  int count , @RequestParam("uid")  String uid , @RequestParam("id")  int id){
+        insertMapper.insertTbCounter(type ,count , uid , id);
     }
 
     public void insertTbCodiList(tbCodiModel tbCodiModel) {
