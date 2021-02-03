@@ -24,27 +24,10 @@ public class GetController {
 		obj.addProperty("errCd" , 0);
 		obj.addProperty("errMsg" , "");
 
-
 		Gson gson = new Gson();
 		String jsonData = gson.toJson(userModelData) ;
 		JsonElement element = gson.fromJson(jsonData, JsonElement.class);
 		obj.add("result" , element);
-
-//		if (element == null){
-//			String emptyJsonData = gson.toJson(new userModel(
-//					"2" ,
-//					"displayname" ,
-//					"email" ,
-//					"bannerId" ,
-//					"banner_id" ,
-//					"phoneNumber" ,
-//					"photoUrl" ,
-//					"providerId"
-//			) ) ;
-//			obj.add("result" , gson.fromJson(emptyJsonData, JsonElement.class) );
-//		}else{
-//			obj.add("result" , element);
-//		}
 
 		return obj.toString();
 	}

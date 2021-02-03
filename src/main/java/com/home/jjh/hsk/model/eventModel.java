@@ -19,5 +19,6 @@ public class eventModel{
     private String imgUrlContent;
     private String imgUrlMain;
     private String startDate;
+    private String eventClickUrl ;
 
 }
