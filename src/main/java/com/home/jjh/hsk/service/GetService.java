@@ -24,6 +24,10 @@ public class GetService {
 	public List<introModel> getApiIntro(){
 		return selectMapper.getApiIntro();
 	}
+	public List<introModel2> getApiIntro2(){
+		return selectMapper.getApiIntro2();
+	}
+
 	public List<eventModel> getApiEvent(){
 		return selectMapper.getApiEvent();
 	}
@@ -51,6 +55,10 @@ public class GetService {
 
 	public List<newItemModel> getApiMDItem(@RequestParam("position") int page ){
 		return selectMapper.getApiMDItem(page);
+	}
+
+	public List<AdIntroBannerList> getAdIntroBannerList(){
+		return selectMapper.getAdIntroBannerList();
 	}
 
 }

@@ -14,6 +14,8 @@ public interface SelectMapper {
     List<adModel> getApiAd();
     //
     List<introModel> getApiIntro();
+    List<introModel2> getApiIntro2();
+
     //
     List<eventModel> getApiEvent();
     //
@@ -34,5 +36,9 @@ public interface SelectMapper {
     List<newItemModel> getApiCodiItem(@RequestParam("position") int page );
 
     List<newItemModel> getApiMDItem(@RequestParam("position") int page );
+
+    List<AdIntroBannerList> getAdIntroBannerList();
+
+
 
 }

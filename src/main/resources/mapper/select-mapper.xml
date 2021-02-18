@@ -61,7 +61,31 @@
 				on a.adId = a.adId;
 	</select>
 
-    <select id="getApiAd" resultType="com.home.jjh.hsk.model.adModel">
+	<!--  IntroData	-->
+	<select id="getApiIntro2" resultType="com.home.jjh.hsk.model.introModel2">
+		Select
+		adintro.adId ,
+		dataAd ,
+		emgContent ,
+		emgTitle ,
+		lastAos ,
+		lastIos ,
+		upMsgAos ,
+		upMsgIos ,
+		verAos ,
+		verIos ,
+		upTitleAos,
+		upTitleIos ,
+		( SELECT JSON_ARRAYAGG(JSON_OBJECT("adId", adId ,"adDetailUrl" , adDetailUrl , "adMsg" , adMsg , "adNo" , adNo , "adStoreName" , adStoreName)) FROM addata ) adData,
+		( SELECT JSON_ARRAYAGG(JSON_OBJECT("adId", adId , "imgUrl" , imgUrl , "itemClickUrl" , itemClickUrl , "bannerType" , bannerType)) FROM mainbanneritem adItem) adItem
+		From adintro
+		inner JOIN ad a
+		on adintro.adId = a.adId
+		inner join ad a2 on adintro.adId = a2.adId ;
+	</select>
+
+
+	<select id="getApiAd" resultType="com.home.jjh.hsk.model.adModel">
 		SELECT adId,
 			cnt,
 			startDate,
