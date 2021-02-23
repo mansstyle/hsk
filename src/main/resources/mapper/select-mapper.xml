@@ -3,16 +3,28 @@
 <mapper namespace="com.home.jjh.hsk.mapper.SelectMapper">
 
     <!-- 유저데이타 개인 유저 데이타 -->
-    <select id="getApiUser" resultType="com.home.jjh.hsk.model.userModel">
-        SELECT uid ,
-                displayname,
-				email,
-				bannerId,
-				phoneNumber,
-				photoUrl,
-				providerId,
-				tokenGoogle
-        FROM `user`
+<!--    <select id="getApiUser" resultType="com.home.jjh.hsk.model.userModel">-->
+<!--        SELECT uid ,-->
+<!--                displayname,-->
+<!--				email,-->
+<!--				bannerId,-->
+<!--				phoneNumber,-->
+<!--				photoUrl,-->
+<!--				providerId,-->
+<!--				tokenGoogle-->
+<!--        FROM `user`-->
+<!--        WHERE email = #{email}-->
+<!--	</select>-->
+
+	<select id="getApiUser" resultType="com.home.jjh.hsk.model.userModel">
+		select
+			a.uid uid , displayname , email , bannerId , phoneNumber , photoUrl , tokenGoogle , passwd , basicAgeType , basicStyle
+			 , (SELECT JSON_ARRAYAGG(JSON_OBJECT("itemId", itemId)) FROM userLikeItem where uid = uid ) userLikeItem
+			 , (SELECT JSON_ARRAYAGG(JSON_OBJECT("storeId", storeId)) FROM userAddStore where uid = uid ) storeId
+			 , (SELECT JSON_ARRAYAGG(JSON_OBJECT("itemId", itemId)) FROM userRecentlyproducts where uid = uid) userRecentlyproductsItem
+		from  user a
+			inner join userAddStore ia on a.uid = ia.uid
+			inner join userStyle us on a.uid = us.uid
         WHERE email = #{email}
 	</select>
 
@@ -49,7 +61,31 @@
 				on a.adId = a.adId;
 	</select>
 
-    <select id="getApiAd" resultType="com.home.jjh.hsk.model.adModel">
+	<!--  IntroData	-->
+	<select id="getApiIntro2" resultType="com.home.jjh.hsk.model.introModel2">
+		Select
+		adintro.adId ,
+		dataAd ,
+		emgContent ,
+		emgTitle ,
+		lastAos ,
+		lastIos ,
+		upMsgAos ,
+		upMsgIos ,
+		verAos ,
+		verIos ,
+		upTitleAos,
+		upTitleIos ,
+		( SELECT JSON_ARRAYAGG(JSON_OBJECT("adId", adId ,"adDetailUrl" , adDetailUrl , "adMsg" , adMsg , "adNo" , adNo , "adStoreName" , adStoreName)) FROM addata ) adData,
+		( SELECT JSON_ARRAYAGG(JSON_OBJECT("adId", adId , "imgUrl" , imgUrl , "itemClickUrl" , itemClickUrl , "bannerType" , bannerType)) FROM mainbanneritem adItem) adItem
+		From adintro
+		inner JOIN ad a
+		on adintro.adId = a.adId
+		inner join ad a2 on adintro.adId = a2.adId ;
+	</select>
+
+
+	<select id="getApiAd" resultType="com.home.jjh.hsk.model.adModel">
 		SELECT adId,
 			cnt,
 			startDate,
@@ -77,7 +113,8 @@
 			eventContent,
 			imgUrlContent,
 			imgUrlMain,
-			startDate
+			startDate ,
+			eventClickUrl
 		FROM `event`
 	</select>
 
@@ -95,6 +132,8 @@
 			itemDetailUrl
 		FROM `item`
 	</select>
+
+
 
     <select id="getApiShopsDataItem" resultType="com.home.jjh.hsk.model.shopsModel">
 		SELECT shopId ,
@@ -132,7 +171,13 @@
 
     <select id="getApiMainBanner" resultType="com.home.jjh.hsk.model.mainBannerItem">
 		select
-       		adStoreName , adNo , adMsg , imgUrl , adDetailUrl , itemClickUrl , bannerType
+       		adStoreName
+       		, adNo
+       		, adMsg
+       		, imgUrl
+       		, adDetailUrl
+       		, itemClickUrl
+       		, bannerType
 		from mainbanneritem
 			left join addata a on mainbanneritem.adId = a.adId;
 	</select>
@@ -156,7 +201,7 @@
 		inner join item s on newitem.itemId = s.itemId
 		left join tbCount tC on newitem.uid = tC.uid
 		order by newitem.uid desc
-		limit  0 , 16;
+		limit  #{position} , 16;
 	</select>
 
     <select id="getApiCodiItem" resultType="com.home.jjh.hsk.model.newItemModel">
@@ -164,7 +209,7 @@
 		   tbCodiListItem.uid ,
 		   shopItemPriceSale ,
 		   s.shopTitle ,
-		   updateTime ,
+		   s.updateTime ,
 		   shopItemUrl ,
 		   shopItemName ,
 		   shopItemDetailUrl ,
@@ -185,7 +230,7 @@
 		tbMDListItem.uid ,
 		shopItemPriceSale ,
 		s.shopTitle ,
-		updateTime ,
+		s.updateTime ,
 		shopItemUrl ,
 		shopItemName ,
 		shopItemDetailUrl ,

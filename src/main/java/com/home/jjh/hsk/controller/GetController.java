@@ -24,27 +24,10 @@ public class GetController {
 		obj.addProperty("errCd" , 0);
 		obj.addProperty("errMsg" , "");
 
-
 		Gson gson = new Gson();
 		String jsonData = gson.toJson(userModelData) ;
 		JsonElement element = gson.fromJson(jsonData, JsonElement.class);
 		obj.add("result" , element);
-
-//		if (element == null){
-//			String emptyJsonData = gson.toJson(new userModel(
-//					"2" ,
-//					"displayname" ,
-//					"email" ,
-//					"bannerId" ,
-//					"banner_id" ,
-//					"phoneNumber" ,
-//					"photoUrl" ,
-//					"providerId"
-//			) ) ;
-//			obj.add("result" , gson.fromJson(emptyJsonData, JsonElement.class) );
-//		}else{
-//			obj.add("result" , element);
-//		}
 
 		return obj.toString();
 	}
@@ -106,6 +89,38 @@ public class GetController {
 		resultObj.add("adData" , element11);
 
 		JsonElement element = gson.fromJson(resultObj, JsonElement.class);
+		obj.add("result" , element);
+
+
+		return obj.toString();
+	}
+
+	@GetMapping("/getapiintro2")
+	public String getApiIntro2(){
+		List<introModel2> data = getService.getApiIntro2();
+		//
+		JsonObject obj = new JsonObject();
+		obj.addProperty("errCd" , 0);
+		obj.addProperty("errMsg" , "");
+		//
+		JsonObject resultObj = new JsonObject();
+		resultObj.addProperty("emgContent" , data.get(0).getEmgContent());
+		resultObj.addProperty("emgTitle" ,  data.get(0).getEmgTitle());
+		resultObj.addProperty("lastAos" , data.get(0).getLastAos());
+		resultObj.addProperty("lastIos" , data.get(0).getLastIos());
+		resultObj.addProperty("upMsgAos" , data.get(0).getUpMsgAos());
+		resultObj.addProperty("upMsgIos" , data.get(0).getUpMsgIos());
+		resultObj.addProperty("upTitleAos" , data.get(0).getUpTitleAos());
+		resultObj.addProperty("upTitleIos" , data.get(0).getUpTitleIos());
+		resultObj.addProperty("verAos" , data.get(0).getVerAos());
+		resultObj.addProperty("verIos" , data.get(0).getVerIos());
+
+		resultObj.addProperty("adData" , data.get(0).getAdData());
+		resultObj.addProperty("adItem" , data.get(0).getAdItem());
+
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(data) ;
+		JsonElement element = gson.fromJson(jsonData, JsonElement.class);
 		obj.add("result" , element);
 
 
@@ -276,4 +291,22 @@ public class GetController {
 
 		return obj.toString();
 	}
+
+	@RequestMapping(method = RequestMethod.GET, path = "/getadintrobannerlist" )
+	public String getAdIntroBannerList(){
+
+		List<AdIntroBannerList> data = getService.getAdIntroBannerList();
+
+		JsonObject obj = new JsonObject();
+		obj.addProperty("errCd" , 0);
+		obj.addProperty("errMsg" , "");
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(data) ;
+		JsonElement element = gson.fromJson(jsonData, JsonElement.class);
+		obj.add("result" , element);
+
+		return obj.toString();
+	}
+
+
 }
