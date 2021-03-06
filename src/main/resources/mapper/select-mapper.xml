@@ -157,6 +157,7 @@
 			shopMainImg ,
 			shopName
 		FROM `shops`
+		order by shopLiike desc , shopShare desc  , shopClick desc
 	</select>
 
 
@@ -208,8 +209,8 @@
 		select
 		   tbCodiListItem.uid ,
 		   shopItemPriceSale ,
-		   s.shopTitle ,
-		   s.updateTime ,
+		   s.shopTitle shopTitle,
+		   s.updateTime updateTime,
 		   shopItemUrl ,
 		   shopItemName ,
 		   shopItemDetailUrl ,
@@ -217,8 +218,8 @@
 		   shopItemPriceSale,
 		   itemCategori ,
 		   itemDetailUrl ,
-           s.itemId ,
-           s.shopId
+           s.itemId itemId ,
+           s.shopId shopId
 		from tbCodiListItem
 		left join item s on tbCodiListItem.codiId = s.itemId
 		order by tbCodiListItem.uid desc
@@ -245,24 +246,30 @@
 		limit  #{position} , 16;
 	</select>
 
-    <!--    select-->
-    <!--    tbMDListItem.uid ,-->
-    <!--    shopItemPriceSale ,-->
-    <!--    s.shopTitle ,-->
-    <!--    updateTime ,-->
-    <!--    shopItemUrl ,-->
-    <!--    shopItemName ,-->
-    <!--    shopItemDetailUrl ,-->
-    <!--    shopItemPriceOriginal ,-->
-    <!--    itemCategori ,-->
-    <!--    itemDetailUrl ,-->
-    <!--    s.itemId ,-->
-    <!--    s.shopId-->
-    <!--    from tbMDListItem-->
-    <!--    left join item s on tbMDListItem.mdItemId = s.itemId-->
-    <!--    order by tbMDListItem.uid desc-->
-    <!--    limit 0 , 16;-->
-    <!--    counter select-->
+	<select id="getSearchList" resultType="com.home.jjh.hsk.model.searchItemModel">
+		select
+		   i.uid ,
+		   REPLACE(shopItemPriceSale , '￦' , ''),
+		   shopTitle ,
+		   updateTime ,
+		   shopItemUrl ,
+		   shopItemName ,
+		   shopItemDetailUrl ,
+		   shopItemPriceOriginal ,
+		   shopItemPriceSale,
+		   itemCategori ,
+		   itemDetailUrl,
+		   itemId ,
+		   shopId
+		from item i
+		left join tbCount tC on i.uid = tC.uid
+		    where shopItemName
+		              like CONCAT('%',#{text},'%')
+		order by tC.count desc;
+	</select>
 
 
+	<select id="getMainShopRandomItem" resultType="com.home.jjh.hsk.model.searchItemModel">
+		call getMainShopRandomItem((SELECT count(*) From shops));
+	</select>
 </mapper>

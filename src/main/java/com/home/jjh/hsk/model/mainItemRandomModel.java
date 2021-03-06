@@ -10,7 +10,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class newItemModel {
+public class mainItemRandomModel {
     //goods_id
     private String shopItemPriceSale;
     private String shopTitle ;
@@ -23,4 +23,5 @@ public class newItemModel {
     private String itemDetailUrl ;
     private String itemId ;
     private String shopId ;
+
 }

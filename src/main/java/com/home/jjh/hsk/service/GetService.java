@@ -61,4 +61,13 @@ public class GetService {
 		return selectMapper.getAdIntroBannerList();
 	}
 
+	public List<searchItemModel> getSearchList(@RequestParam("text") String text){
+		return selectMapper.getSearchList(text);
+	}
+
+	public List<mainItemRandomModel> getMainShopRandomItem(){
+		return selectMapper.getMainShopRandomItem();
+	}
+
+
 }

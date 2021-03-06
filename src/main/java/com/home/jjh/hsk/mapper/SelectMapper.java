@@ -39,6 +39,10 @@ public interface SelectMapper {
 
     List<AdIntroBannerList> getAdIntroBannerList();
 
+    List<searchItemModel> getSearchList(@RequestParam("text") String text);
+
+    List<mainItemRandomModel> getMainShopRandomItem();
+
 
 
 }

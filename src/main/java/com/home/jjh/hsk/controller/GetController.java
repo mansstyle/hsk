@@ -308,5 +308,37 @@ public class GetController {
 		return obj.toString();
 	}
 
+	@RequestMapping(method = RequestMethod.GET, path = "/getsearchlist" )
+	public String getSearchList(@RequestParam("text") String text){
+
+		List<searchItemModel> data = getService.getSearchList(text);
+
+		JsonObject obj = new JsonObject();
+		obj.addProperty("errCd" , 0);
+		obj.addProperty("errMsg" , "");
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(data) ;
+		JsonElement element = gson.fromJson(jsonData, JsonElement.class);
+		obj.add("result" , element);
+
+		return obj.toString();
+	}
+
+	@RequestMapping(method = RequestMethod.GET, path = "/getmainshoprandomitem" )
+	public String getMainShopRandomItem(){
+
+		List<mainItemRandomModel> data = getService.getMainShopRandomItem();
+
+		JsonObject obj = new JsonObject();
+		obj.addProperty("errCd" , 0);
+		obj.addProperty("errMsg" , "");
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(data) ;
+		JsonElement element = gson.fromJson(jsonData, JsonElement.class);
+		obj.add("result" , element);
+
+		return obj.toString();
+	}
+
 
 }
